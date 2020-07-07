@@ -6,7 +6,7 @@ $json = stripslashes($json);
 $values = json_decode($json, true);
 $arr = $values['inboundSMSMessageList']['inboundSMSMessage'];
 foreach($arr as $a){
-	mysqli_query($p, "INSERT INTO receivedsms VALUES(NULL,'".$a['messageId']."','".$a['senderAddress']."','".$a['message']."','".$a['dateTime']."')");
+	mysqli_query($p, "INSERT INTO sms_log VALUES(NULL,'".$a['messageId']."','".$a['senderAddress']."','".$a['message']."','".$a['dateTime']."')");
 }
 
 ?>
