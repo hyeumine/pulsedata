@@ -7,7 +7,7 @@
 <select>
 <?php
 	while($r = mysqli_fetch_assoc($res)){
-		echo "<option value='". $res['access_token'] ."'>". $res['qcode'] . " - ". $res['subscriber_number']."</option>";
+		echo "<option value='". $r['access_token'] ."'>". $r['qcode'] . " - ". $r['subscriber_number']."</option>";
 	}
 
 ?>
