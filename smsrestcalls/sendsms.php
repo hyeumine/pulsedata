@@ -13,7 +13,7 @@
 			'outboundSMSMessageRequest' => [
 				"clientCorrelator"=> "123456",
 				   "senderAddress"=> "9965",
-   				    "address" => "9664136950",
+   				    "address" => "+639664136950",
 				   "outboundSMSTextMessage"=> ["message"=>'ert']
 			]
 		];
