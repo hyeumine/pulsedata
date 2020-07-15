@@ -5,25 +5,32 @@
 ?>
 <?php
 	if(isset($_REQUEST['message']) && isset($_REQUEST['token'])){
+
 		$token = explode('-',$_REQUEST['token']);
 		var_dump($token);
-		$postRequest = array(
-		    'outboundSMSMessageRequest' =>
-		    array(
-		    	 "clientCorrelator"=> "123456",
+
+		$post = [
+			'outboundSMSMessageRequest' => [
+				"clientCorrelator"=> "123456",
 				   "senderAddress"=> "9965",
-				   "outboundSMSTextMessage"=> array("message"=>$_REQUEST['message']),
+				   "outboundSMSTextMessage"=> ["message"=>$_REQUEST['message']],
    					"address"=> "tel:+9664136950"
-		    )
-		);
+			]
+		];
 
-		$cURLConnection = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/9965/requests?access_token='.$token[0]);
-		curl_setopt($cURLConnection, CURLOPT_POSTFIELDS, $postRequest);
-		curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+		$ch = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/9965/requests?access_token='.$token[0]);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 
-		$apiResponse = curl_exec($cURLConnection);
-		var_dump($apiResponse);
-		curl_close($cURLConnection);
+		// execute!
+		$response = curl_exec($ch);
+
+		// close the connection, release resources used
+		curl_close($ch);
+
+		// do anything you want with your response
+		var_dump($response);
+
 	}
 ?>
 <form action='' method='post'>
