@@ -6,6 +6,7 @@
 <?php
 	if(isset($_REQUEST['message']) && isset($_REQUEST['token'])){
 		$token = explode('-',$_REQUEST['token']);
+		var_dump($token);
 		$postRequest = array(
 		    'outboundSMSMessageRequest' =>
 		    array(
