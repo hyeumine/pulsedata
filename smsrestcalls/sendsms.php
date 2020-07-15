@@ -13,8 +13,8 @@
 			'outboundSMSMessageRequest' => [
 				"clientCorrelator"=> "123456",
 				   "senderAddress"=> "9965",
-				   "outboundSMSTextMessage"=> ["message"=>$_REQUEST['message']],
-   					"address"=> "tel:+9664136950"
+   					"address" => "tel:+9664136950",
+				   "outboundSMSTextMessage"=> ["message"=>'ert']
 			]
 		];
 
