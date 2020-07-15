@@ -3,4 +3,4 @@
 	mysqli_query($p, "SELECT * FROM subscriber as s JOIN qperson as p ON s.subscriber_number=p.mobile_number");
 	echo 1;
 
-?>
+?>dsfdsf
