@@ -21,6 +21,7 @@
 		curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
 
 		$apiResponse = curl_exec($cURLConnection);
+		var_dump($apiResponse);
 		curl_close($cURLConnection);
 	}
 ?>
