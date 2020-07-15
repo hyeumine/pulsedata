@@ -21,7 +21,7 @@
 		$ch = curl_init('https://devapi.globelabs.com.ph/smsmessaging/v1/outbound/9965/requests?access_token='.$token[0]);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($post));
 
 		// execute!
 		$response = curl_exec($ch);
