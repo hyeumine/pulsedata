@@ -13,7 +13,7 @@
 		    	 "clientCorrelator"=> "123456",
 				   "senderAddress"=> "21589965",
 				   "outboundSMSTextMessage"=> array("message"=>$_REQUEST['message']),
-   					"address"=> "+".$token[1]
+   					"address"=> "tel:+9664136950".$token[1]
 		    )
 		);
 
