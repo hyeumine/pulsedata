@@ -1,6 +1,13 @@
+<?php
 
-<?php include('staff_header.php'); ?>
+require_once('private/initialize.php');
 
-  <?php include('login-form.php'); ?>
+?>
 
-<?php include('staff_footer.php'); ?>
+<?php include(SHARED_PATH.'/public_header.php'); ?>
+		
+	<body class="bg-gradient-primary">
+
+	<?php include('login-form.php'); ?>
+
+<?php include(SHARED_PATH.'/public_footer.php'); ?>
