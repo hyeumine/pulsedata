@@ -13,6 +13,8 @@
 
     <?php 
 
+      echo current_page();
+
       switch ( current_page() ) {
         case SITE_NAME.'/':
           is_page_header( current_page(), SITE_NAME.'/', 'Toledo Pulse Data Login');
@@ -26,8 +28,8 @@
         case SITE_NAME.'/forgot-password.php':
           is_page_header( current_page(), SITE_NAME.'/forgot-password.php', 'Toledo Pulse Data - Forgot Password');
           break; 
-        case SITE_NAME.'/dashboard.php':
-          is_page_header( current_page(), SITE_NAME.'/dashboard.php', 'Toledo Pulse Data - Dashboard');
+        case SITE_NAME.'/public/staff/patients/dashboard.php':
+          is_page_header( current_page(), SITE_NAME.'/public/staff/patients/dashboard.php', 'Toledo Pulse Data - Dashboard');
           break; 
       }
 

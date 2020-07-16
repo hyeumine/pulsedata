@@ -11,7 +11,7 @@
 
 <?php  
 
- if( is_page( current_page(), SITE_NAME."/dashboard.php") ){
+ if( is_page( current_page(), SITE_NAME."/public/staff/patients/dashboard.php") ){
  ?>	
 
    <!-- Page level plugins -->
@@ -20,7 +20,7 @@
    <!-- show only data tables -->
 	<script src="<?php html(url_for("/assets/js/moment/min/moment.min.js")); ?>"></script>
 
-	<script src="<?php html(url_for("/assets/javascript/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js")); ?>"></script>
+	<script src="<?php html(url_for("/assets/js/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js")); ?>"></script>
 
    <!-- Page level custom scripts -->
    <script src="<?php html(url_for("/assets/js/demo/chart-area-demo.js")); ?>"></script>
