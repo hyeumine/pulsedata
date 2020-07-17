@@ -1,7 +1,7 @@
 <?php 
 define("SITE_NAME", $_SERVER['SERVER_NAME'] );
 
-date_default_timezone_set('Asia/Manila');
+// date_default_timezone_set('Asia/Manila');
 
 // dirname() returns the path to the parent directory
 define("PRIVATE_PATH", dirname(__FILE__));
