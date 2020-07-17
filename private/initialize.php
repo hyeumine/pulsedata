@@ -34,6 +34,6 @@ spl_autoload_register('my_autoload');
 $database = db_connect();
 DatabaseObject::set_database($database);
 
-echo "teseting here 9:42";
+echo "teseting here 9:42333";
 exit();
 
