@@ -1,7 +1,18 @@
 <?php
 
 function db_connect() {
-  $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+
+  $db_user = 'b01244ab209a87';
+  $db_pass = '2ad7c806';
+  $db_name = 'heroku_3223da8055cbdc3';
+  $db_host = 'us-cdbr-east-02.cleardb.com';
+
+  // define("DB_SERVER", "us-cdbr-east-02.cleardb.com");
+  // define("DB_USER", "b01244ab209a87");
+  // define("DB_PASS", "2ad7c806");
+  // define("DB_NAME", "heroku_3223da8055cbdc3");
+
+  $connection = new mysqli($db_host, $db_user, $db_pass, $db_name);
   confirm_db_connect($connection);
   return $connection;
 }
