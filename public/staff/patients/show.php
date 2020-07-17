@@ -37,7 +37,7 @@ include(SHARED_PATH.'/staff_header.php');?>
           </div>
 
           <!-- Form -->
-          <form action="<?php echo url_for('/staff/bicycles/new.php'); ?>" method="post">
+          <form action="" method="post">
             <div class="card o-hidden border-0 shadow-lg my-5">
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
@@ -77,8 +77,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                           
                             <div class="dataTables_length" id="dataTable_length">
                                <label>
-                                  Status : <?php echo h($person->condition()); ?>
-                                 
+                                  Status : <?php echo h($person->condition()); ?>                          
                                </label>
                             </div>
 
@@ -87,6 +86,11 @@ include(SHARED_PATH.'/staff_header.php');?>
 
                       <hr>                     
                       </form>
+
+                     <p class="text-center"> 
+                        <a class="action text-warning text-left" href="<?php echo url_for('/staff/patients/edit.php?id=' . h(u($person->id))); ?>"> <i class="fa fa-edit"></i> Update Info </a>
+                     </p>   
+
                     </div>
                   </div>
                 </div>

@@ -2,19 +2,24 @@
 
 require_once('../../../private/initialize.php');
 
-if(is_post_request()){
+if(!isset($_GET['id'])) {
+  redirect_to(url_for('/staff/patients/index.php'));
+}
+$id = $_GET['id'];
+$person = Person::find_by_id($id);
+if($person == false) {
+  redirect_to(url_for('/staff/patients/index.php'));
+}
 
-  $args = $_POST['person'];
+if(is_post_request()) {
 
-  $person = new Person($args);
-  $result = $person->save();
+  // Delete bicycle
+  $result = $person->delete();
+  $_SESSION['message'] = 'The patients was deleted successfully.';
+  redirect_to(url_for('/staff/patients/'));
 
-  if($result === true) {
-    $new_id = $person->id;
-    $_SESSION['message'] = 'The Patients was created successfully.';
-    redirect_to(url_for('/staff/patients/show.php?id=' . $new_id));
-  }
-
+} else {
+  // Display form
 }
 
 include(SHARED_PATH.'/staff_header.php');?>
@@ -41,35 +46,41 @@ include(SHARED_PATH.'/staff_header.php');?>
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Add New Patient</h1>
+            <h1 class="h3 mb-0 text-gray-800"> <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-circle"><i class="fa fa-arrow-alt-circle-left"></i></a> Delete Patient</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
-          <!-- Form -->
-          <form action="<?php echo url_for('/staff/patients/new.php'); ?>" method="post">
-            <div class="card o-hidden border-0 shadow-lg my-5">
-              <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                  <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                  <div class="col-lg-7">
-                    <div class="p-5">
-                      <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Please Fill Up New Information</h1>
-                      </div>
+		<!-- Form -->
+        <form action="<?php echo url_for('/staff/patients/delete.php?id=' . h(u($id))); ?>" method="post">
 
-                      <?php include('form_fields.php'); ?>
-                      
-                      <button type="submit" class="btn btn-primary btn-user btn-block">
-                        Submit New Record
-                      </button>
+         <div class="col-xl-10 col-lg-12 col-md-9">
 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
+	        <div class="card o-hidden border-0 shadow-lg my-5">
+	          <div class="card-body p-0">
+	            <!-- Nested Row within Card Body -->
+	            <div class="row">
+	              <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+	              <div class="col-lg-6">
+	                <div class="p-5">
+	                  <div class="text-center">
+	                    <h1 class="h4 text-gray-900 mb-2">Are you sure you want to delete this person?</h1>
+			    			<p class="item"><?php echo h($person->fname); ?></p>
+	                  </div>  
+	                  <hr>
+	                  <div class="text-center">
+	                    <button type="submit" class="btn btn-danger btn-user btn-block">
+	                          Delete Record
+	                      </button>
+	                  </div>
+	          
+	                </div>
+	              </div>
+	            </div>
+	          </div>
+        	</div>
+
+      	</div>
+
 
         </div>
         <!-- /.container-fluid -->
