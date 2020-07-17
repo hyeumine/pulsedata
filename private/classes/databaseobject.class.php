@@ -8,11 +8,11 @@ class DatabaseObject {
   public $errors = [];
 
   static public function set_database($database) {
-    self::$database = $database;
+   DatabaseObject::$database = $database;
   }
 
   static public function find_by_sql($sql) {
-    $result = self::$database->query($sql);
+    $result = DatabaseObject::$database->query($sql);
     if(!$result) {
       exit("Database query failed.");
     }
@@ -69,16 +69,16 @@ class DatabaseObject {
   protected function sanitized_attributes() {
     $sanitized = [];
     foreach($this->attributes() as $key => $value) {
-      $sanitized[$key] = self::$database->escape_string($value);
+      $sanitized[$key] = DatabaseObject::$database->escape_string($value);
     }
     return $sanitized;
   }
 
   public function delete() {
     $sql = "DELETE FROM " . static::$table_name . " ";
-    $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
+    $sql .= "WHERE id='" . DatabaseObject::$database->escape_string($this->id) . "' ";
     $sql .= "LIMIT 1";
-    $result = self::$database->query($sql);
+    $result = DatabaseObject::$database->query($sql);
     return $result;
 
     // After deleting, the instance of the object will still
