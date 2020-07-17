@@ -37,20 +37,49 @@ class Person extends DatabaseObject{
 	    3 => 'Covid+'
 	];
 
+	// $condition = "";
+
+	// $result = $condition ? 'foo' : 'bar';
+
+	// echo $result;
+
 	public function __construct($args=[]) {
 
-	    $this->qcode = $args['qcode'] ?? '';
-	    $this->lgu_code = $args['lgu_code'] ?? '';
-	    $this->fname = $args['fname'] ?? '';
-	    $this->mname = $args['mname'] ?? '';
-	    $this->lname = $args['lname'] ?? '';
-	    $this->mobile_number = $args['mobile_number'] ?? '';
-	    $this->address = $args['address'] ?? '';
-	    $this->details = $args['details'] ?? '';
-	    $this->status = $args['status'] ?? '';
-	    $this->start_date = $args['start_date'] ?? current_date();
-	    $this->created_at = $args['created_at'] ?? current_date();
+	    // $this->qcode = $args['qcode'] ?? ''; 
+		// $this->lgu_code = $args['lgu_code'] ?? '';
+	 //    $this->fname = $args['fname'] ?? '';
+	 //    $this->mname = $args['mname'] ?? '';
+	 //    $this->lname = $args['lname'] ?? '';
+	 //    $this->mobile_number = $args['mobile_number'] ?? '';
+	 //    $this->address = $args['address'] ?? '';
+	 //    $this->details = $args['details'] ?? '';
+	 //    $this->status = $args['status'] ?? '';
+	 //    $this->start_date = $args['start_date'] ?? current_date();
+	 //    $this->created_at = $args['created_at'] ?? current_date();
 
+	    $this->qcode = isset( $args['qcode'] ) ? $args['qcode'] : "";
+	    $this->lgu_code =  isset( $args['lgu_code'] ) ? $args['lgu_code'] : "";
+	    $this->fname =  isset( $args['fname'] ) ? $args['fname'] : "";
+	    $this->mname =  isset( $args['mname'] ) ? $args['mname'] : "";
+	    $this->lname =  isset( $args['lname'] ) ? $args['lname'] : "";
+	    $this->mobile_number =  isset( $args['mobile_number'] ) ? $args['mobile_number'] : "";
+	    $this->address =  isset( $args['address'] ) ? $args['address'] : "";
+	    $this->details =  isset( $args['details'] ) ? $args['details'] : "";
+	    $this->status =  isset( $args['status'] ) ? $args['status'] : "";
+	    $this->start_date =  isset( $args['start_date'] ) ? $args['start_date'] : "";
+	    $this->created_at =  isset( $args['created_at'] ) ? $args['created_at'] : current_date();
+
+	    // $this->qcode = $args['qcode'] ? $args['qcode'] : '';
+	    // $this->lgu_code = $args['lgu_code'] ? $args['lgu_code'] : '';	
+	    // $this->fname = $args['fname'] ? $args['fname'] : '';
+	    // $this->mname = $args['mname'] ? $args['mname'] : '';
+	    // $this->lname = $args['lname'] ? $args['lname'] : '';
+	    // $this->mobile_number = $args['mobile_number'] ? $args['mobile_number'] : '';
+	    // $this->address = $args['address'] ? $args['address'] : '';
+	    // $this->details = $args['details'] ? $args['details'] : '';
+	    // $this->status = $args['status'] ? $args['status'] : '';
+	    // $this->start_date = $args['start_date'] ? $args['start_date'] : '';
+	    // $this->start_date = $args['created_at'] ? $args['created_at'] : '';
 	}
 
 	static public function find_all() {

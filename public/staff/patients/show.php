@@ -2,7 +2,9 @@
 
 require_once('../../../private/initialize.php');
 
-$id = $_GET['id'] ?? '1'; // PHP > 7.0
+// $id = $_GET['id'] ?? '1'; // PHP > 7.0
+
+$id = isset( $args['id'] ) ? $args['id'] : "1";
 
 $person = Person::find_by_id($id);
 
