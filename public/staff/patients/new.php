@@ -13,8 +13,13 @@ if(is_post_request()){
     $new_id = $person->id;
     $_SESSION['message'] = 'The Patients was created successfully.';
     redirect_to(url_for('/staff/patients/show.php?id=' . $new_id));
+  } else {
+    // show errors
   }
 
+} else {
+  // display the form
+  $person = new Person;
 }
 
 include(SHARED_PATH.'/staff_header.php');?>
@@ -59,7 +64,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                       </div>
 
                       <?php include('form_fields.php'); ?>
-                      
+
                       <button type="submit" class="btn btn-primary btn-user btn-block">
                         Submit New Record
                       </button>
