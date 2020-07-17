@@ -29,10 +29,4 @@ function my_autoload($class) {
 spl_autoload_register('my_autoload');
 
 $database = db_connect();
-
-var_dump($database);
-
-echo "debug 10:04";
-exit();
-
 DatabaseObject::set_database($database);
