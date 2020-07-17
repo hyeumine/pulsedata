@@ -2,20 +2,9 @@
 
 require_once('../../../private/initialize.php');
 
-if(is_post_request()){
+$id = $_GET['id'] ?? '1'; // PHP > 7.0
 
-  $args = $_POST['person'];
-
-  $person = new Person($args);
-  $result = $person->save();
-
-  if($result === true) {
-    $new_id = $person->id;
-    $_SESSION['message'] = 'The Patients was created successfully.';
-    redirect_to(url_for('/staff/patients/show.php?id=' . $new_id));
-  }
-
-}
+$person = Person::find_by_id($id);
 
 include(SHARED_PATH.'/staff_header.php');?>
 
@@ -41,12 +30,14 @@ include(SHARED_PATH.'/staff_header.php');?>
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Add New Patient</h1>
+            <h1 class="h3 mb-0 text-gray-800"> 
+              <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-circle"><i class="fa fa-arrow-alt-circle-left"></i></a> 
+              Patient Info </h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
           <!-- Form -->
-          <form action="<?php echo url_for('/staff/patients/new.php'); ?>" method="post">
+          <form action="<?php echo url_for('/staff/bicycles/new.php'); ?>" method="post">
             <div class="card o-hidden border-0 shadow-lg my-5">
               <div class="card-body p-0">
                 <!-- Nested Row within Card Body -->
@@ -55,51 +46,44 @@ include(SHARED_PATH.'/staff_header.php');?>
                   <div class="col-lg-7">
                     <div class="p-5">
                       <div class="text-center">
-                        <h1 class="h4 text-gray-900 mb-4">Please Fill Up New Information</h1>
+                        <h1 class="h4 text-gray-900 mb-4"> 
+                           Please Fill Up New Information</h1>
                       </div>
                       <form class="user">
                         <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" name="person[fname]" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                            First Name: <?php html( h( $person->fname ) ) ?>
                           </div>
                           <div class="col-sm-6">
-                            <input type="text" name="person[mname]" class="form-control form-control-user" id="exampleLastName" placeholder="Middle Name">
+                            M Name: <?php html( h( $person->mname ) ) ?>
                           </div>
                         </div>
                         <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
-                            <input type="text" name="person[lname]" class="form-control form-control-user" id="exampleFirstName" placeholder="Last Name">
+                            Last Name : <?php html( h( $person->lname ) ) ?>
                           </div>
                           <div class="col-sm-6">
-                            <input type="text" name="person[mobile_number]" class="form-control form-control-user" id="exampleLastName" placeholder="Mobile">
+                            Mobile: <?php html( h( $person->mobile_number ) ) ?>
                           </div>
                         </div>
                         <div class="form-group">
-                          <input type="text" name="person[address]" class="form-control form-control-user" id="exampleInputEmail" placeholder="Address">
+                          Address : <?php html( h( $person->address ) ) ?>
                         </div>
                         <div class="form-group">                                            
-                          <textarea id="w3review" name="person[details]" class="form-control form-control-user" name="w3review">Details</textarea>
+                          Details : <?php html( h( $person->details ) ) ?>
                         </div>
                          <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
                           
                             <div class="dataTables_length" id="dataTable_length">
                                <label>
-                                  Status 
-                                  <select name="person[status]" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                                    <?php foreach(Person::CONDITION_OPTIONS as $cond_id => $cond_name) { ?>
-                                      <option value="<?php echo $cond_id; ?>"><?php echo $cond_name; ?></option>
-                                    <?php } ?>
-                                  </select>
+                                  Status : <?php echo h($person->condition()); ?>
+                                 
                                </label>
                             </div>
 
                           </div>
                         </div>
-
-                        <button type="submit" class="btn btn-primary btn-user btn-block">
-                          Submit New Record
-                        </button>
 
                       <hr>                     
                       </form>

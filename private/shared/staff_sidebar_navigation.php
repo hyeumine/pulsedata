@@ -28,7 +28,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
        <li class="nav-item">
-        <a class="nav-link collapsed" href="patients.php" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="<?php echo url_for('/staff/patients/'); ?>" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Patients</span>
         </a>
@@ -36,9 +36,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Action</h6>
               <a class="collapse-item" href="<?php echo url_for('/staff/patients/new.php'); ?>">Add New</a>
-            <a class="collapse-item" href="login.html">All Patients</a>
-            <a class="collapse-item" href="register.html">Register</a>
-            <a class="collapse-item" href="forgot-password.html"> Bulk Upload</a>
+            <a class="collapse-item" href="<?php echo url_for('/staff/patients/'); ?>">All Patients</a>
+            <a class="collapse-item" href="#"> Bulk Upload</a>
           </div>
         </div>
       </li>

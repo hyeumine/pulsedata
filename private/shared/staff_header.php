@@ -13,8 +13,6 @@
 
     <?php 
 
-      echo current_page();
-
       switch ( current_page() ) {
         case SITE_NAME.'/':
           is_page_header( current_page(), SITE_NAME.'/', 'Toledo Pulse Data Login');
@@ -28,9 +26,9 @@
         case SITE_NAME.'/forgot-password.php':
           is_page_header( current_page(), SITE_NAME.'/forgot-password.php', 'Toledo Pulse Data - Forgot Password');
           break; 
-        case SITE_NAME.'/public/staff/patients/dashboard.php':
-          is_page_header( current_page(), SITE_NAME.'/public/staff/patients/dashboard.php', 'Toledo Pulse Data - Dashboard');
-          break; 
+        case SITE_NAME.'/public/staff/patients/index.php':
+          is_page_header( current_page(), SITE_NAME.'/public/staff/patients/index.php', 'Toledo Pulse Data - Dashboard');
+          break;
       }
 
     ?>
@@ -45,6 +43,13 @@
   <link href="<?php echo url_for('/assets/css/sb-admin-2.min.css');?>" rel="stylesheet">
 
   <link rel="stylesheet" href="<?php echo url_for('/assets/js/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css');?>">
+
+  <?php  
+   if( is_page( current_page(), SITE_NAME."/public/staff/patients/") ){ ?> 
+
+    <link href="<?php echo url_for('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
+
+  <?php } ?>
 
 </head>
 
