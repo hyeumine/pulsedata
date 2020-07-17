@@ -28,5 +28,5 @@ function my_autoload($class) {
 }
 spl_autoload_register('my_autoload');
 
-$database = db_connect();
-DatabaseObject::set_database($database);
+ $database = db_connect();
+ Person::set_database($database);
