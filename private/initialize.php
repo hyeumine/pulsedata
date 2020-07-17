@@ -28,8 +28,5 @@ function my_autoload($class) {
 }
 spl_autoload_register('my_autoload');
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
 $database = db_connect();
 DatabaseObject::set_database($database);
