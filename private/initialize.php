@@ -16,9 +16,10 @@ define("WWW_ROOT", $doc_root);
 require_once(PRIVATE_PATH.'/functions.php');
 
 require_once('db_credentials.php');
-echo "teseting here";
-exit();
 require_once('database_functions.php');
+
+echo "teseting here 9:38";
+exit();
 
 foreach(glob('classes/*.class.php') as $file) {
 	require_once($file);
