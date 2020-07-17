@@ -13,23 +13,23 @@
 
     <?php 
 
-      switch ( current_page() ) {
-        case SITE_NAME.'/':
-          is_page_header( current_page(), SITE_NAME.'/', 'Toledo Pulse Data Login');
-          break;
-        case SITE_NAME.'/index.php':
-          is_page_header( current_page(), SITE_NAME.'/index.php', 'Toledo Pulse Data Login');
-          break;
-        case SITE_NAME.'/login.php':
-          is_page_header( current_page(), SITE_NAME.'/login.php', 'Toledo Pulse Data Login');
-          break;
-        case SITE_NAME.'/forgot-password.php':
-          is_page_header( current_page(), SITE_NAME.'/forgot-password.php', 'Toledo Pulse Data - Forgot Password');
-          break; 
-        case SITE_NAME.'/public/staff/patients/index.php':
-          is_page_header( current_page(), SITE_NAME.'/public/staff/patients/index.php', 'Toledo Pulse Data - Dashboard');
-          break;
-      }
+      // switch ( current_page() ) {
+      //   case SITE_NAME.'/':
+      //     is_page_header( current_page(), SITE_NAME.'/', 'Toledo Pulse Data Login');
+      //     break;
+      //   case SITE_NAME.'/index.php':
+      //     is_page_header( current_page(), SITE_NAME.'/index.php', 'Toledo Pulse Data Login');
+      //     break;
+      //   case SITE_NAME.'/login.php':
+      //     is_page_header( current_page(), SITE_NAME.'/login.php', 'Toledo Pulse Data Login');
+      //     break;
+      //   case SITE_NAME.'/forgot-password.php':
+      //     is_page_header( current_page(), SITE_NAME.'/forgot-password.php', 'Toledo Pulse Data - Forgot Password');
+      //     break; 
+      //   case SITE_NAME.'/public/staff/patients/index.php':
+      //     is_page_header( current_page(), SITE_NAME.'/public/staff/patients/index.php', 'Toledo Pulse Data - Dashboard');
+      //     break;
+      // }
 
     ?>
 
