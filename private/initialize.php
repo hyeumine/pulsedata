@@ -30,8 +30,10 @@ function my_autoload($class) {
 }
 spl_autoload_register('my_autoload');
 
-echo "teseting here 9:40";
-exit();
 
 $database = db_connect();
 DatabaseObject::set_database($database);
+
+echo "teseting here 9:42";
+exit();
+
