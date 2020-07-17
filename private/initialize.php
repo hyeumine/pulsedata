@@ -22,9 +22,6 @@ foreach(glob('classes/*.class.php') as $file) {
 require_once($file);
 }
 
-echo "teseting here 9:40";
-exit();
-
 // Autoload class definitions
 function my_autoload($class) {
 	if(preg_match('/\A\w+\Z/', $class)) {
@@ -32,6 +29,9 @@ function my_autoload($class) {
 	}
 }
 spl_autoload_register('my_autoload');
+
+echo "teseting here 9:40";
+exit();
 
 $database = db_connect();
 DatabaseObject::set_database($database);
