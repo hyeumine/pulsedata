@@ -2,8 +2,7 @@
 
 require_once('../../../private/initialize.php');
 
-
-$admin_set = find_all_admins();
+$admin_set = $person->find_all_person();
 
 var_dump($admin_set);
 

@@ -4,9 +4,6 @@
 
   function db_connect() {
     $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-
-    var_dump($connection);
-
     confirm_db_connect();
     return $connection;
   }

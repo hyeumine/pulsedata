@@ -1,8 +1,9 @@
 <?php
 
-class Person extends DatabaseObject{
+class Person{
 	
-	function find_all_admins() {
+	public static function find_all_person(){
+		
 	    global $db;
 
 	    $sql = "SELECT * FROM qperson ";
@@ -13,5 +14,7 @@ class Person extends DatabaseObject{
 	 }
 	
 }
+
+$person = New Person();
 
 ?>

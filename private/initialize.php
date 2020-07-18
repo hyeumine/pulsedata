@@ -19,16 +19,10 @@ $public_end = strpos($_SERVER['SCRIPT_NAME'], '/public') + 7;
 $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
 
-
-define("DB_SERVER", "us-cdbr-east-02.cleardb.com");
-define("DB_USER", "b01244ab209a87");
-define("DB_PASS", "2ad7c806");
-define("DB_NAME", "heroku_3223da8055cbdc3");
-
 require_once(PRIVATE_PATH.'/functions.php');
 require_once(PRIVATE_PATH.'/database.php');
 require_once(CLASS_PATH.'/person.class.php');
 
-$database = db_connect();
+$db = db_connect();
 
 
