@@ -13,13 +13,13 @@ if(!isset($person)) {
     </div>
     <div class="col-sm-6">
        Middle Name 
-      <input type="text" name="person[mname]" class="form-control form-control-user"  value="<?php html( h($person['mname']) ); ?>" placeholder="Middle Name">
+      <input type="text" name="mname" class="form-control form-control-user"  value="<?php html( h($person['mname']) ); ?>" placeholder="Middle Name">
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
        Last Name 
-      <input type="text" name="lnam" class="form-control form-control-user" value="<?php html( h($person['lname']) ); ?>" placeholder="Last Name">
+      <input type="text" name="lname" class="form-control form-control-user" value="<?php html( h($person['lname']) ); ?>" placeholder="Last Name">
     </div>
     <div class="col-sm-6">
         Mobile Number
