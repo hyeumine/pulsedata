@@ -2,7 +2,10 @@
 
 require_once('../../../private/initialize.php');
 
-// Find all bicycles;
+
+$admin_set = find_all_admins();
+
+var_dump($admin_set);
 
 include(SHARED_PATH.'/staff_header.php');?>
 
@@ -67,24 +70,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                     </tr>
                   </tfoot>
                   <tbody>
-                     <?php foreach($persons as $person) { ?>
-                        <tr>
-                          <td><?php echo h($person->qcode); ?></td>
-                          <td><?php echo h($person->lgu_code); ?></td>
-                          <td><?php echo h($person->fname); ?></td>
-                          <td><?php echo h($person->mname); ?></td>
-                          <td><?php echo h($person->lname); ?></td>
-                          <td><?php echo h($person->mobile_number); ?></td>
-                          <td><?php echo h($person->details); ?></td>
-                          <td><?php echo h($person->status); ?></td>
-                          <td><?php echo h($person->start_date); ?></td>
-                          <td>
-                            <a class="action text-info" href="<?php echo url_for('/staff/patients/show.php?id=' . h(u($person->id))); ?>">  <i class="fa fa-eye"></i> <!-- View --></a>
-                            <a class="action text-warning" href="<?php echo url_for('/staff/patients/edit.php?id=' . h(u($person->id))); ?>"> <i class="fa fa-edit"></i> <!-- Edit --></a>
-                            <a class="action text-danger" href="<?php echo url_for('/staff/patients/delete.php?id=' . h(u($person->id))); ?>"> <i class="fa fa-trash-alt"></i> <!-- Delete --></a>
-                        </td>
-                        </tr>
-                      <?php } ?>          
+                             
                   </tbody>
                 </table>
               </div>
