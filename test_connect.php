@@ -6,13 +6,27 @@ define("DB_PASS", "2ad7c806");
 define("DB_NAME", "heroku_3223da8055cbdc3");
 
 
-$mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-
-// Check connection
-if ($mysqli->connect_errno) {
-  echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-  exit();
-}else{
-	echo "connect";
+function db_connect() {
+  $connection = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+  confirm_db_connect($connection);
+  return $connection;
 }
+
+function confirm_db_connect($connection) {
+  if($connection->connect_errno) {
+    $msg = "Database connection failed: ";
+    $msg .= $connection->connect_error;
+    $msg .= " (" . $connection->connect_errno . ")";
+    exit($msg);
+  }
+}
+
+$database = db_connect();
+
+if($database){
+	echo "ok";
+}else{
+	echo "error";
+}
+
 ?>

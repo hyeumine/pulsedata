@@ -2,11 +2,6 @@
 
 function db_connect() {
 
-  define("DB_SERVER", "us-cdbr-east-02.cleardb.com");
-  define("DB_USER", "b01244ab209a87");
-  define("DB_PASS", "2ad7c806");
-  define("DB_NAME", "heroku_3223da8055cbdc3");
-
   $mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
   confirm_db_connect($mysqli);
   return $mysqli;
