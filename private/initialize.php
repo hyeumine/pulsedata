@@ -52,20 +52,12 @@ function db_disconnect($connection) {
 
 $database = db_connect();
 
-if($database){
-	echo "ok";
-}else{
-	echo "error";
-}
-
 require_once(CLASS_PATH.'/databaseobject.class.php');
 require_once(CLASS_PATH.'/person.class.php');
-
 // require_once('database_functions.php');
 // foreach(glob('classes/*.class.php') as $file) {
 // require_once($file);
 // }
-
 // Autoload class definitions
 // function my_autoload($class) {
 // 	if(preg_match('/\A\w+\Z/', $class)) {
