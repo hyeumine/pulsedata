@@ -2,24 +2,39 @@
 
 require_once('../../../private/initialize.php');
 
-if(is_post_request()){
+if(is_post_request()) {
+  $person = [];
+  $person['qcode'] = $_POST['qcode'] ?? '';
+  $person['lgu_code'] = $_POST['lgu_code'] ?? '';    
+  $person['fname'] = $_POST['fname'] ?? '';
+  $person['mname'] = $_POST['mname'] ?? '';
+  $person['lname'] = $_POST['lname'] ?? '';
+  $person['mobile_number'] = $_POST['mobile_number'] ?? '';
+  $person["address"] =  $_POST['address'] ?? '';
+  $person['details'] = $_POST['details'] ?? '';
+  $person['start_date'] = $_POST['start_date'] ?? '';
 
-  $args = $_POST['person'];
-
-  $person = new Person($args);
-  $result = $person->save();
-
+  $result = Person::insert_person($person);
   if($result === true) {
-    $new_id = $person->id;
-    $_SESSION['message'] = 'The Patients was created successfully.';
+    $new_id = mysqli_insert_id($db);
+    $_SESSION['message'] = 'Person created.';
     redirect_to(url_for('/staff/patients/show.php?id=' . $new_id));
   } else {
-    // show errors
+    $errors = $result;
   }
 
 } else {
-  // display the form
-  $person = new Person;
+  // display the blank form
+  $person = [];
+  $person['qcode'] = $_POST['qcode'] ?? '';
+  $person['lgu_code'] = $_POST['lgu_code'] ?? ''; 
+  $person["fname"] = '';
+  $person["mname"] = '';
+  $person["lname"] = '';
+  $person["mobile_number"] = '';
+  $person["address"] = '';
+  $person['details'] = '';
+  $person['start_date'] = '';
 }
 
 include(SHARED_PATH.'/staff_header.php');?>

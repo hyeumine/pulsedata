@@ -7,31 +7,26 @@ if(!isset($_GET['id'])) {
 }
 
 $id = $_GET['id'];
-$person = Person::find_by_id($id);
-if($person == false) {
-  redirect_to(url_for('/staff/patients/index.php'));
-}
 
 if(is_post_request()) {
+  $person = [];
+  $person['id'] = $id;
+  $person['fname'] = $_POST['fname'] ?? '';
+  $person['mname'] = $_POST['mname'] ?? '';
+  $person['lname'] = $_POST['lname'] ?? '';
+  $person['address'] = $_POST['address'] ?? '';
+  $person['details'] = $_POST['details'] ?? '';
+  $person['start_date'] = $_POST['start_date'] ?? '';
 
-  // Save record using post parameters
-  $args = $_POST['person'];
-  $person->merge_attributes($args);
-  $result = $person->save();
-
+  $result = Person::update_person($person);
   if($result === true) {
-    $_SESSION['message'] = 'The person was updated successfully.';
-
+    $_SESSION['message'] = 'Admin updated.';
     redirect_to(url_for('/staff/patients/show.php?id=' . $id));
-
   } else {
-    // show errors
+    $errors = $result;
   }
-
 } else {
-
-  // display the form
-
+  $person = Person::find_person_id($id);
 }
 
 include(SHARED_PATH.'/staff_header.php');?>

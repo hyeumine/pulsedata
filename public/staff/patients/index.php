@@ -2,9 +2,7 @@
 
 require_once('../../../private/initialize.php');
 
-$admin_set = $person->find_all_person();
-
-var_dump($admin_set);
+$persons = $person->find_all_person();
 
 include(SHARED_PATH.'/staff_header.php');?>
 
@@ -49,7 +47,6 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <th>Last Name</th>
                       <th>Mobile</th>
                       <th>Details</th>
-                      <th>Status</th>
                       <th>Admission</th>
                       <th>Action</th>
                     </tr>
@@ -63,13 +60,28 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <th>Last Name</th>
                       <th>Mobile</th>
                       <th>Details</th>
-                      <th>Status</th>
                       <th>Admission</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                             
+                      <?php foreach($persons as $person) { ?>
+                        <tr>
+                          <td><?php echo h($person['qcode']); ?></td>
+                          <td><?php echo h($person['lgu_code']); ?></td>
+                          <td><?php echo h($person['fname']); ?></td>
+                          <td><?php echo h($person['mname']); ?></td>
+                          <td><?php echo h($person['lname']); ?></td>
+                          <td><?php echo h($person['mobile_number']); ?></td>
+                          <td><?php echo h($person['details']); ?></td>
+                          <td><?php echo h($person['start_date']); ?></td>
+                          <td>
+                            <a class="action text-info" href="<?php echo url_for('/staff/patients/show.php?id=' . h(u($person['id']))); ?>">  <i class="fa fa-eye"></i> <!-- View --></a>
+                            <a class="action text-warning" href="<?php echo url_for('/staff/patients/edit.php?id=' . h(u($person['id']))); ?>"> <i class="fa fa-edit"></i> <!-- Edit --></a>
+                            <a class="action text-danger" href="<?php echo url_for('/staff/patients/delete.php?id=' . h(u($person['id']))); ?>"> <i class="fa fa-trash-alt"></i> <!-- Delete --></a>
+                        </td>
+                        </tr>
+                      <?php } ?>     
                   </tbody>
                 </table>
               </div>

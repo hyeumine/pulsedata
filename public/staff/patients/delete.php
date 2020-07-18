@@ -5,21 +5,19 @@ require_once('../../../private/initialize.php');
 if(!isset($_GET['id'])) {
   redirect_to(url_for('/staff/patients/index.php'));
 }
+
 $id = $_GET['id'];
-$person = Person::find_by_id($id);
-if($person == false) {
-  redirect_to(url_for('/staff/patients/index.php'));
-}
 
 if(is_post_request()) {
 
   // Delete bicycle
-  $result = $person->delete();
+
+  $result = Person::delete_person($id);
   $_SESSION['message'] = 'The patients was deleted successfully.';
   redirect_to(url_for('/staff/patients/'));
 
 } else {
-  // Display form
+  $person = Person::find_person_id($id);
 }
 
 include(SHARED_PATH.'/staff_header.php');?>
@@ -51,7 +49,7 @@ include(SHARED_PATH.'/staff_header.php');?>
           </div>
 
 		<!-- Form -->
-        <form action="<?php echo url_for('/staff/patients/delete.php?id=' . h(u($id))); ?>" method="post">
+        <form action="<?php echo url_for('/staff/patients/delete.php?id=' . h(u($person['id']))); ?>" method="post">
 
          <div class="col-xl-10 col-lg-12 col-md-9">
 
@@ -64,7 +62,7 @@ include(SHARED_PATH.'/staff_header.php');?>
 	                <div class="p-5">
 	                  <div class="text-center">
 	                    <h1 class="h4 text-gray-900 mb-2">Are you sure you want to delete this person?</h1>
-			    			<p class="item"><?php echo h($person->fname); ?></p>
+			    			    <p class="item"><?php echo h($person['fname']); ?></p>
 	                  </div>  
 	                  <hr>
 	                  <div class="text-center">

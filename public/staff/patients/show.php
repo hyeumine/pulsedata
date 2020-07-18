@@ -4,9 +4,9 @@ require_once('../../../private/initialize.php');
 
 // $id = $_GET['id'] ?? '1'; // PHP > 7.0
 
-$id = isset( $args['id'] ) ? $args['id'] : "1";
+$id = isset( $_GET['id'] ) ? $_GET['id'] : "1";
 
-$person = Person::find_by_id($id);
+$person = Person::find_person_id($id);
 
 include(SHARED_PATH.'/staff_header.php');?>
 
@@ -54,32 +54,32 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <form class="user">
                         <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
-                            First Name: <?php html( h( $person->fname ) ) ?>
+                            First Name: <?php html( h( $person['fname'] ) ) ?>
                           </div>
                           <div class="col-sm-6">
-                            M Name: <?php html( h( $person->mname ) ) ?>
+                            M Name: <?php html( h( $person['mname'] ) ) ?>
                           </div>
                         </div>
                         <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
-                            Last Name : <?php html( h( $person->lname ) ) ?>
+                            Last Name : <?php html( h( $person['lname'] ) ) ?>
                           </div>
                           <div class="col-sm-6">
-                            Mobile: <?php html( h( $person->mobile_number ) ) ?>
+                            Mobile: <?php html( h( $person['mobile_number'] ) ) ?>
                           </div>
                         </div>
                         <div class="form-group">
-                          Address : <?php html( h( $person->address ) ) ?>
+                          Address : <?php html( h( $person['address'] ) ) ?>
                         </div>
                         <div class="form-group">                                            
-                          Details : <?php html( h( $person->details ) ) ?>
+                          Details : <?php html( h( $person['details'] ) ) ?>
                         </div>
                          <div class="form-group row">
                           <div class="col-sm-6 mb-3 mb-sm-0">
                           
                             <div class="dataTables_length" id="dataTable_length">
                                <label>
-                                  Status : <?php echo h($person->condition()); ?>                          
+                                  Status : <?php echo h( Person::condition(1) ); ?>                          
                                </label>
                             </div>
 
@@ -90,7 +90,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                       </form>
 
                      <p class="text-center"> 
-                        <a class="action text-warning text-left" href="<?php echo url_for('/staff/patients/edit.php?id=' . h(u($person->id))); ?>"> <i class="fa fa-edit"></i> Update Info </a>
+                        <a class="action text-warning text-left" href="<?php echo url_for('/staff/patients/edit.php?id=' . h(u($person['id']))); ?>"> <i class="fa fa-edit"></i> Update Info </a>
                      </p>   
 
                     </div>

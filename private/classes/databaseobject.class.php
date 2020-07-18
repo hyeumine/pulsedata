@@ -74,7 +74,7 @@ class DatabaseObject {
     return $sanitized;
   }
 
-  public function delete() {
+  public function delete_admin() {
     $sql = "DELETE FROM " . static::$table_name . " ";
     $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
     $sql .= "LIMIT 1";
