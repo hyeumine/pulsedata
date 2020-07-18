@@ -53,9 +53,9 @@ function insert_admin() {
     $sql = "INSERT INTO qperson ";
     $sql .= "(qcode, lgu_code, fname, mname, lname, mobile_number, address, details, start_date, created_at) ";
     $sql .= "VALUES (";
-    $sql .= "'" . db_escape($db, 'OS-02') . "',";
-    $sql .= "'" . db_escape($db, 'LGU-0002') . "',";
-    $sql .= "'" . db_escape($db, 'Wail') . "',";
+    $sql .= "'" . db_escape($db, 'OS-03') . "',";
+    $sql .= "'" . db_escape($db, 'LGU-0003') . "',";
+    $sql .= "'" . db_escape($db, 'Wails') . "',";
     $sql .= "'" . db_escape($db, 'A') . "',";
     $sql .= "'" . db_escape($db, 'He') . "',";
     $sql .= "'" . db_escape($db, '09103045601') . "',";
