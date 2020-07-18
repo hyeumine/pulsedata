@@ -3,7 +3,6 @@
 require_once('../../../private/initialize.php');
 
 // Find all bicycles;
-$persons = person::find_all();
 
 include(SHARED_PATH.'/staff_header.php');?>
 

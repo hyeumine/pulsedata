@@ -52,8 +52,7 @@ class Person extends DatabaseObject{
 	    $this->lname = $args['lname'] ?? '';
 	    $this->mobile_number = $args['mobile_number'] ?? '';
 	    $this->address = $args['address'] ?? '';
-	    $this->details = $args['details'] ?? '';
-	    $this->status = $args['status'] ?? '';
+	    $this->details = $args['details'] ?? '';? '';
 	    $this->start_date = $args['start_date'] ?? current_date();
 	 	$this->created_at = $args['created_at'] ?? "";
 

@@ -30,7 +30,8 @@ define("DB_NAME", "heroku_3223da8055cbdc3");
 
 
 function db_connect() {
-  $connection = new MySQLi(DB_SERVER, DB_USER, DB_PASS, DB_NAME, '/var/lib/mysql/mysql.sock' );
+					//$db = new MySQLi('localhost', 'root', 'root', 'my_db', '3306', '/var/lib/mysql/mysql.sock')
+  $connection = new MySQLi(DB_SERVER, DB_USER, DB_PASS, DB_NAME,'3306','/var/lib/mysql/mysql.sock' );
   confirm_db_connect($connection);
   return $connection;
 }
