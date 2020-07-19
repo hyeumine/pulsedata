@@ -55,7 +55,13 @@ include(SHARED_PATH.'/staff_header.php');?>
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"> <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-circle"><i class="fa fa-arrow-alt-circle-left"></i></a> Edit Patient</h1>
+            <h1 class="h3 mb-0 text-gray-800"> 
+              <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                              <i class="fa fa-arrow-alt-circle-left"></i>
+                            </span>
+                            <span class="text">Back To All Patients</span>
+                          </a> Edit Patient</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -78,9 +84,13 @@ include(SHARED_PATH.'/staff_header.php');?>
 
                        <?php include('form_fields.php'); ?>
 
+
+
                       <button type="submit" class="btn btn-warning btn-user btn-block">
                           Update Record
                       </button>
+
+                      
 
                     </div>
                   </div>
