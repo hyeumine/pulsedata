@@ -22,7 +22,11 @@ define("WWW_ROOT", $doc_root);
 require_once(PRIVATE_PATH.'/functions.php');
 require_once(PRIVATE_PATH.'/database.php');
 require_once(CLASS_PATH.'/person.class.php');
+require_once(CLASS_PATH.'/qpersonsummary.class.php');
+require_once(CLASS_PATH.'/admin.class.php');
+require_once(CLASS_PATH.'/session.class.php');
 
 $db = db_connect();
 
+$session = new Session;
 

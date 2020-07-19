@@ -11,7 +11,7 @@
 
 <?php  
 
- if( is_page( current_page(), SITE_NAME."/public/staff/patients/") ){
+ if( is_page( current_page(), SITE_NAME."/public/staff/patients/") || is_page( current_page(), SITE_NAME."/public/staff/patients/show.php?id=".isset($_GET['id'])) ){
  ?>	
 
   <!-- Page level custom scripts -->
@@ -22,7 +22,6 @@
 
   <!-- Page level custom scripts -->
   <script src="<?php html(url_for("/assets/js/demo/datatables-demo.js")); ?>"></script>
-
 
 <?php
  }elseif( is_page( current_page(), SITE_NAME."/public/staff/patients/dashboard.php") ){  ?>

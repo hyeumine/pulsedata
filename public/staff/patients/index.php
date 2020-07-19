@@ -2,6 +2,8 @@
 
 require_once('../../../private/initialize.php');
 
+require_login();
+
 $persons = $person->find_all_person();
 
 include(SHARED_PATH.'/staff_header.php');?>
@@ -37,7 +39,7 @@ include(SHARED_PATH.'/staff_header.php');?>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered text-nowrap" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Q Code</th>
@@ -46,6 +48,9 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <th>Middle Name</th>
                       <th>Last Name</th>
                       <th>Mobile</th>
+                      <th>Status</th>
+                      <th>Oxygne </th>
+                      <th>Date & Time</th>
                       <th>Details</th>
                       <th>Admission</th>
                       <th>Action</th>
@@ -59,13 +64,24 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <th>Middle Name</th>
                       <th>Last Name</th>
                       <th>Mobile</th>
+                      <th>Status</th>
+                      <th>Oxygne</th>
+                      <th>Date & Time</th>
                       <th>Details</th>
                       <th>Admission</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                      <?php foreach($persons as $person) { ?>
+                      <?php foreach($persons as $person) {
+
+                        $qps = New QPersonSummary();
+                        $status_summary = $qps->find_qperson_summary_id($person['id']);
+                        $status['status'] = $qps->condition($status_summary['status']);
+                        $oxreading_datetime = mdyyyy_time_format($status_summary['oxreading_datetime']);
+
+                       ?>
+
                         <tr>
                           <td><?php echo h($person['qcode']); ?></td>
                           <td><?php echo h($person['lgu_code']); ?></td>
@@ -73,6 +89,10 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td><?php echo h($person['mname']); ?></td>
                           <td><?php echo h($person['lname']); ?></td>
                           <td><?php echo h($person['mobile_number']); ?></td>
+                          <td class="text-center">
+                            <?php echo $status['status']; ?></td>
+                          <td><?php echo h($status_summary['ox_reading']); ?></td>
+                          <td><?php echo h($oxreading_datetime); ?></td>
                           <td><?php echo h($person['details']); ?></td>
                           <td><?php echo h($person['start_date']); ?></td>
                           <td>
@@ -116,22 +136,6 @@ include(SHARED_PATH.'/staff_header.php');?>
   </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+ <?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
 
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>

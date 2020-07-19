@@ -44,12 +44,9 @@
 
   <link rel="stylesheet" href="<?php echo url_for('/assets/js/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css');?>">
 
-  <?php  
-   if( is_page( current_page(), SITE_NAME."/public/staff/patients/") ){ ?> 
+  <link href="<?php echo url_for('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
 
-    <link href="<?php echo url_for('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
-
-  <?php } ?>
+  <link href="<?php echo url_for('/assets/css/stylesheets.css');?>" rel="stylesheet">
 
 </head>
 

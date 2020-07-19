@@ -2,6 +2,8 @@
 
 require_once('../../../private/initialize.php');
 
+require_login();
+
 // $id = $_GET['id'] ?? '1'; // PHP > 7.0
 
 $id = isset( $_GET['id'] ) ? $_GET['id'] : "1";
@@ -33,7 +35,12 @@ include(SHARED_PATH.'/staff_header.php');?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"> 
-              <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-circle"><i class="fa fa-arrow-alt-circle-left"></i></a> 
+               <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                              <i class="fa fa-arrow-alt-circle-left"></i>
+                            </span>
+                            <span class="text">Back To All Patients</span>
+                          </a> 
               Patient Info </h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
@@ -49,49 +56,151 @@ include(SHARED_PATH.'/staff_header.php');?>
                     <div class="p-5">
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4"> 
-                           Please Fill Up New Information</h1>
+                           Patient Information</h1>
                       </div>
-                      <form class="user">
-                        <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                            First Name: <?php html( h( $person['fname'] ) ) ?>
-                          </div>
-                          <div class="col-sm-6">
-                            M Name: <?php html( h( $person['mname'] ) ) ?>
-                          </div>
-                        </div>
-                        <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                            Last Name : <?php html( h( $person['lname'] ) ) ?>
-                          </div>
-                          <div class="col-sm-6">
-                            Mobile: <?php html( h( $person['mobile_number'] ) ) ?>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          Address : <?php html( h( $person['address'] ) ) ?>
-                        </div>
-                        <div class="form-group">                                            
-                          Details : <?php html( h( $person['details'] ) ) ?>
-                        </div>
-                         <div class="form-group row">
-                          <div class="col-sm-6 mb-3 mb-sm-0">
-                          
-                            <div class="dataTables_length" id="dataTable_length">
-                               <label>
-                                  Status : <?php echo h( Person::condition(1) ); ?>                          
-                               </label>
+
+                      <div class="col-md-8">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label><strong>First Name</strong></label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="text-info"><strong><?php html( h( $person['fname'] ) ) ?></strong></p>
+                                </div>
                             </div>
-
-                          </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label><strong>Middle Name</strong></label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>:</label>
+                                </div>
+                                <div class="col-md-5">
+                                   <p class="text-info"><strong><?php html( h( $person['mname'] ) ) ?></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label><strong>Last Name</strong></label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>:</label>
+                                </div>
+                                <div class="col-md-5">
+                                   <p class="text-info"><strong><?php html( h( $person['lname'] ) ) ?></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label><strong>Mobile</strong></label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>:</label>
+                                </div>
+                                <div class="col-md-5">
+                                   <p class="text-info"><strong><?php html( h( $person['mobile_number'] ) ) ?></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label><strong>Details</strong></label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>:</label>
+                                </div>
+                                <div class="col-md-5">
+                                   <p class="text-info"><strong><?php html( h( $person['details'] ) ) ?></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label><strong>Status</strong></label>
+                                </div>
+                                <div class="col-md-1">
+                                    <label>:</label>
+                                </div>
+                                <div class="col-md-5">
+                                     <p class="text-info"><strong> <?php echo h( Person::condition(1) ); ?> </strong></p>                       
+                                </div>
+                            </div>                                 
+                          </div>                          
                         </div>
+                      </div>  
 
-                      <hr>                     
-                      </form>
-
-                     <p class="text-center"> 
+                      <p class="text-center"> 
                         <a class="action text-warning text-left" href="<?php echo url_for('/staff/patients/edit.php?id=' . h(u($person['id']))); ?>"> <i class="fa fa-edit"></i> Update Info </a>
-                     </p>   
+                     </p>  
+
+                         <!-- DataTales Example -->
+                          <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                              <h6 class="m-0 font-weight-bold text-primary"> Quarantine Patients Summary </h6>
+                            </div>
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                <table class="table-sm table table-bordered table-hover patients-table table-striped" id="dataTable" width="100%" cellspacing="0">
+                                  <thead>
+                                    <tr>
+                                      <th class="small" >Date</th>
+                                      <th class="small" >Time</th>
+                                      <th class="small" >Oxi Reading</th>
+                                    </tr>
+                                  </thead>
+                                  <tfoot>
+                                    <tr>
+                                      <th class="small" >Date</th>
+                                      <th class="small" >Time</th>
+                                      <th class="small" >Oxi Reading</th>
+                                    </tr>
+                                  </tfoot>
+                                  <tbody>              
+                                    <tr>
+                                      <th class="small">06/18/2020</th>
+                                      <td class="small">18:04</td>
+                                      <td class="small"> 90% </td>
+                                    </tr>
+                                    <tr>
+                                      <th class="small">06/17/2020</th>
+                                      <td class="small">17:04</td>
+                                      <td class="small">80%</td>
+                                    </tr>
+                                    <tr>
+                                      <th class="small">06/16/2020</th>
+                                      <td class="small">16:04</td>
+                                      <td class="small">80%</td>
+                                    </tr>
+                                     <tr>
+                                     <th class="small">06/14/2020</th>
+                                      <td class="small">15:04</td>
+                                      <td class="small">80%</td>
+                                    </tr>
+                                     <tr>
+                                      <th class="small">06/14/2020</th>
+                                      <td class="small">14:04</td>
+                                      <td class="small">80%</td>
+                                    </tr>
+                                     <tr>
+                                      <th class="small">06/13/2020</th>
+                                      <td class="small">12:04</td>
+                                      <td class="small">75%</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+
+                          <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-icon-split">
+                            <span class="icon text-white-50">
+                              <i class="fa fa-arrow-alt-circle-left"></i>
+                            </span>
+                            <span class="text">Back To All Patients</span>
+                          </a>
 
                     </div>
                   </div>
@@ -126,23 +235,6 @@ include(SHARED_PATH.'/staff_header.php');?>
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+ <?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
 
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>

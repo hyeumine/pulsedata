@@ -1,3 +1,6 @@
 # pulsedata
 
-Access Dashboard
+
+Patients Info Template:
+https://bootsnipp.com/snippets/K0ZmK
+
