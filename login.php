@@ -48,9 +48,6 @@ if(is_post_request()) {
 }
 
 ?>
-
-?>
-
 <?php include(SHARED_PATH.'/public_header.php'); ?>
 		
 	<body class="bg-gradient-primary">
