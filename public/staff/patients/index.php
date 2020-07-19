@@ -89,8 +89,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td><?php echo h($person['mname']); ?></td>
                           <td><?php echo h($person['lname']); ?></td>
                           <td><?php echo h($person['mobile_number']); ?></td>
-                          <td class="text-center">
-                            <?php echo $status['status']; ?></td>
+                          <td class="text-center"><?php echo $status['status']; ?></td>
                           <td><?php echo h($status_summary['ox_reading']); ?></td>
                           <td><?php echo h($oxreading_datetime); ?></td>
                           <td><?php echo h($person['details']); ?></td>
