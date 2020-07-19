@@ -24,7 +24,8 @@
   <script src="<?php html(url_for("/assets/js/demo/datatables-demo.js")); ?>"></script>
 
 <?php
- }elseif( is_page( current_page(), SITE_NAME."/public/staff/patients/dashboard.php") ){  ?>
+ }elseif( is_page( current_page(), SITE_NAME."/public/staff/patients/dashboard.php") ||
+	is_page( current_page(), SITE_NAME."/public/staff/patients/show.php?id=".isset($_GET['id'])) ){  ?>
 
 	<!-- Page level plugins -->
   	<script src="<?php html(url_for("/assets/vendor/chart.js/Chart.min.js")); ?>"></script>

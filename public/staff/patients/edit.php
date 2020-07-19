@@ -16,6 +16,7 @@ if(is_post_request()) {
   $person['fname'] = $_POST['fname'] ?? '';
   $person['mname'] = $_POST['mname'] ?? '';
   $person['lname'] = $_POST['lname'] ?? '';
+  $person['mobile_number'] = $_POST['mobile_number'] ?? '';
   $person['address'] = $_POST['address'] ?? '';
   $person['details'] = $_POST['details'] ?? '';
   $person['start_date'] = $_POST['start_date'] ?? '';
