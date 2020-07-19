@@ -33,7 +33,7 @@
                   <button type="submit" class="btn btn-primary btn-user btn-block" name="submit" /> Login </button>
                 </form>
                 <div class="text-center">
-                  <a class="small" href="forgot-password.html">Forgot Password?</a>
+                  <a class="small" href="forgot-password.php">Forgot Password?</a>
                 </div>
               </div>
             </div>
