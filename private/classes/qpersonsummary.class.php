@@ -5,7 +5,7 @@ class QPersonSummary{
 	public const CONDITION_OPTIONS = [
 	    1 => 'Low',
 	    2 => 'Mild',
-	    3 => 'Servere'
+	    3 => 'Severe'
 	];
 
 	public static function find_qperson_summary_id($id) {
