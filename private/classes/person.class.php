@@ -77,7 +77,7 @@ class Person{
 	    $sql .= "mobile_number='" . db_escape($db, $person['mobile_number']) . "', ";
 	    $sql .= "address='" . db_escape($db, $person['address']) . "', ";
 	    $sql .= "details='" . db_escape($db, $person['details']) . "', ";
-	    $sql .= "start_date='" . db_escape($db, $person['start_date']) . "' ";
+	    // $sql .= "start_date='" . db_escape($db, $person['start_date']) . "' ";
 	    // $sql .= "created_at='" . db_escape($db, current_date() ) . "' ";
 	    $sql .= "WHERE id='" . db_escape($db, $person['id']) . "' ";
 	    $sql .= "LIMIT 1";
