@@ -9,26 +9,26 @@ if(!isset($person)) {
   <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
       First Name 
-      <input type="text" name="fname" class="form-control form-control-user" value="<?php html( h($person['fname']) ); ?>" placeholder="First Name">
+      <input type="text" name="fname" class="form-control form-control-user" value="<?php html( h($person['fname']) ); ?>" placeholder="">
     </div>
     <div class="col-sm-6">
        Middle Name 
-      <input type="text" name="mname" class="form-control form-control-user"  value="<?php html( h($person['mname']) ); ?>" placeholder="Middle Name">
+      <input type="text" name="mname" class="form-control form-control-user"  value="<?php html( h($person['mname']) ); ?>" placeholder="">
     </div>
   </div>
   <div class="form-group row">
     <div class="col-sm-6 mb-3 mb-sm-0">
        Last Name 
-      <input type="text" name="lname" class="form-control form-control-user" value="<?php html( h($person['lname']) ); ?>" placeholder="Last Name">
+      <input type="text" name="lname" class="form-control form-control-user" value="<?php html( h($person['lname']) ); ?>" placeholder="">
     </div>
     <div class="col-sm-6">
         Mobile Number
-      <input type="text" name="mobile_number" class="form-control form-control-user" value="<?php echo html( h($person['mobile_number']) ); ?>" placeholder="Mobile">
+      <input type="text" name="mobile_number" class="form-control form-control-user" value="<?php echo html( h($person['mobile_number']) ); ?>" placeholder="">
     </div>
   </div>
   <div class="form-group">
      Address
-    <input type="text" name="address" class="form-control form-control-user" value="<?php html( h($person['address']) ); ?>" placeholder="Address">
+    <input type="text" name="address" class="form-control form-control-user" value="<?php html( h($person['address']) ); ?>" placeholder="">
   </div>
   <div class="form-group">  
     Details                                          
