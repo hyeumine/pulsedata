@@ -57,7 +57,7 @@
      is_page( current_page(), SITE_NAME."/forgot-password.php") ||
      is_page( current_page(), SITE_NAME."/staff/patients/new.php") ){
      html('<body class="bg-gradient-primary">');
-  }elseif( is_page(current_page(), SITE_NAME."/dashboard.php") ){
+  }elseif( is_page(current_page(), SITE_NAME."/public/staff/patients/dashboard.php") ){
     html('<body id="page-top">');
   }else{
     html('<body>');
