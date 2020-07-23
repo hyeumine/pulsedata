@@ -1,6 +1,6 @@
 <?php
 
-require_once('private/initialize.php');
+require_once('../../private/initialize.php');
 
 $errors = [];
 $username = '';
@@ -48,10 +48,10 @@ if(is_post_request()) {
 }
 
 ?>
-<?php include(SHARED_PATH.'/public_header.php'); ?>
+<?php include(SHARED_PATH.'/staff_header.php'); ?>
 		
 	<body class="bg-gradient-primary">
 
 	<?php include('login-form.php'); ?>
 
-<?php include(SHARED_PATH.'/public_footer.php'); ?>
+<?php include(SHARED_PATH.'/staff_footer.php'); ?>

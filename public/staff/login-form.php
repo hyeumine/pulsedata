@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-lg-6 d-none d-lg-block">
                 
-                  <img class="img-thumbnail" src="patients.jpg" />
+                  <img class="img-thumbnail" src="<?php html(url_for('/assets/img/patients.jpg')); ?>" />
 
             </div>
             <div class="col-lg-6">
