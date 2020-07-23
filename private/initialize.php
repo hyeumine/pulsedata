@@ -21,18 +21,10 @@ define("WWW_ROOT", $doc_root);
 
 require_once(PRIVATE_PATH.'/functions.php');
 require_once(PRIVATE_PATH.'/database.php');
-
-foreach(glob('classes/*.class.php') as $file) {
-    require_once($file);
-  }
-
-  // Autoload class definitions
-  function my_autoload($class) {
-    if(preg_match('/\A\w+\Z/', $class)) {
-      include('classes/' . $class . '.class.php');
-    }
-  }
-  spl_autoload_register('my_autoload');
+require_once(CLASS_PATH.'/person.class.php');
+require_once(CLASS_PATH.'/qpersonsummary.class.php');
+require_once(CLASS_PATH.'/admin.class.php');
+require_once(CLASS_PATH.'/session.class.php');
 
 $db = db_connect();
 
