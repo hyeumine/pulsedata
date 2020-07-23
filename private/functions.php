@@ -82,21 +82,6 @@ function is_blank($value) {
 	return !isset($value) || trim($value) === '';
 }
 
-function display_errors($errors=array()) {
-  $output = '';
-  if(!empty($errors)) {
-    $output .= "<div class=\"errors\">";
-    $output .= "Please fix the following errors:";
-    $output .= "<ul>";
-    foreach($errors as $error) {
-      $output .= "<li>" . h($error) . "</li>";
-    }
-    $output .= "</ul>";
-    $output .= "</div>";
-  }
-  return $output;
-}
-
 function require_login() {
   global $session;
   if(!$session->is_logged_in()) {

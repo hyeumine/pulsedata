@@ -20,6 +20,7 @@ $doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
 define("WWW_ROOT", $doc_root);
 
 require_once(PRIVATE_PATH.'/functions.php');
+require_once(PRIVATE_PATH.'/status_error_functions.php');
 require_once(PRIVATE_PATH.'/database.php');
 require_once(CLASS_PATH.'/person.class.php');
 require_once(CLASS_PATH.'/qpersonsummary.class.php');

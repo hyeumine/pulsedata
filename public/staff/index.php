@@ -1,7 +1,7 @@
 <?php
 
 // Redirect all default requests to login page
-header("Location: /public/staff/admin/login.php");
+header("Location: /public/staff/login.php");
 exit;
 
 ?>
