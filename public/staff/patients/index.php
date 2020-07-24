@@ -102,7 +102,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td class="text-center"><?php echo $status['status']; ?></td>
                           <td><?php echo h($status_summary['ox_reading']); ?></td>
                           <td><?php echo h($oxreading_datetime); ?></td>
-                          <td> <?php $qps->subscriber_flag($person['mobile_number']); ?> </td>
+                          <td class="text-center" > <?php $qps->subscriber_flag($person['mobile_number']); ?> </td>
                           <td><?php echo h($person['details']); ?></td>
                           <td><?php echo h($person['start_date']); ?></td>
                           <td>
