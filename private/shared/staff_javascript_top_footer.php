@@ -11,7 +11,9 @@
 
 <?php  
 
- if( is_page( current_page(), SITE_NAME.url_for("/staff/patients/index.php")) || is_page( current_page(),SITE_NAME.url_for( "/staff/patients/show.php?id=".isset($_GET['id'])) ) ){
+ if( is_page( current_page(), SITE_NAME.url_for("/staff/patients/index.php")) || 
+ 	is_page( current_page(), SITE_NAME.url_for("/staff/patients/")) ||
+ 	is_page( current_page(),SITE_NAME.url_for( "/staff/patients/show.php?id=".isset($_GET['id'])) ) ){
  ?>	
 
   <!-- Page level custom scripts -->
