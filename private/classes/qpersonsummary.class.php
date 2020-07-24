@@ -9,6 +9,7 @@ class QPersonSummary{
 	];
 
 	public static function find_qperson_summary_id($id) {
+
 	    global $db;
 
 	    $sql = "SELECT * FROM qperson_summary ";
@@ -16,9 +17,40 @@ class QPersonSummary{
 	    $sql .= "LIMIT 1";
 	    $result = mysqli_query($db, $sql);
 	    confirm_result_set($result);
-	    $data = mysqli_fetch_assoc($result); // find first
+	    $qperson = mysqli_fetch_assoc($result); // find first
 	    mysqli_free_result($result);
-	    return $data; // returns an assoc. array
+	    if($qperson){
+	    	return $qperson;
+	    }else{
+	    	return false;
+	    }
+
+	}
+
+	public static function subscriber($mobile_number){
+
+		global $db;
+
+		$sql = "SELECT * FROM subscriber ";
+	    $sql .= "WHERE subscriber_number='" . db_escape($db, $mobile_number) . "' ";
+
+	    $result = mysqli_query($db, $sql);
+	    $subscriber_count = mysqli_num_rows($result);
+	    mysqli_free_result($result);
+	    return $subscriber_count === 1;
+
+	}
+
+	public static function subscriber_flag($mobile_number){
+
+		$result = self::subscriber($mobile_number);
+		if($result){
+			$flag = "<i class='fa fa-check-circle text-success'></i>";
+		}else{
+			$flag = "<i class='fa fa-times-circle text-danger'></i>"; 
+		}	
+
+		return html($flag);
 	}
 
 	public static function condition($condition_id) {

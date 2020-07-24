@@ -4,22 +4,37 @@ require_once('../../../private/initialize.php');
 
 require_login();
 
+$errors = [];
+$fname = '';
+$mname = '';
+$lname = '';
+$mobile_number = '';
+$address = '';
+$details = '';
+
 if(is_post_request()) {
+
   $person = [];
-  $person['qcode'] = $_POST['qcode'] ?? '';
-  $person['lgu_code'] = $_POST['lgu_code'] ?? '';    
+  $person['qcode'] = '';
+  $person['lgu_code'] = '';    
   $person['fname'] = $_POST['fname'] ?? '';
   $person['mname'] = $_POST['mname'] ?? '';
   $person['lname'] = $_POST['lname'] ?? '';
   $person['mobile_number'] = $_POST['mobile_number'] ?? '';
   $person["address"] =  $_POST['address'] ?? '';
   $person['details'] = $_POST['details'] ?? '';
-  $person['start_date'] = $_POST['start_date'] ?? '';
+  $person['start_date'] = current_date();
 
   $result = Person::insert_person($person);
+
   if($result === true) {
     $new_id = mysqli_insert_id($db);
-    $_SESSION['message'] = 'Person created.';
+    $session->message('
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>  The Patients was created successfully.</p>
+      </div>
+    ');
     redirect_to(url_for('/staff/patients/show.php?id=' . $new_id));
   } else {
     $errors = $result;
@@ -28,8 +43,8 @@ if(is_post_request()) {
 } else {
   // display the blank form
   $person = [];
-  $person['qcode'] = $_POST['qcode'] ?? '';
-  $person['lgu_code'] = $_POST['lgu_code'] ?? ''; 
+  $person['qcode'] = '';
+  $person['lgu_code'] = ''; 
   $person["fname"] = '';
   $person["mname"] = '';
   $person["lname"] = '';
@@ -65,11 +80,11 @@ include(SHARED_PATH.'/staff_header.php');?>
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">
               <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-icon-split">
-                            <span class="icon text-white-50">
-                              <i class="fa fa-arrow-alt-circle-left"></i>
-                            </span>
-                            <span class="text">Back To All Patients</span>
-                          </a> Add New Patient</h1>
+                <span class="icon text-white-50">
+                  <i class="fa fa-arrow-alt-circle-left"></i>
+                </span>
+                <span class="text">Back To All Patients</span>
+                </a> Add New Patient</h1>
             <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
           </div>
 
@@ -89,6 +104,8 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <div class="text-center">
                         <h1 class="h4 text-gray-900 mb-4">Please Fill Up New Information</h1>
                       </div>
+
+                        <?php echo display_errors($errors); ?>
 
                       <?php include('form_fields.php'); ?>
 
@@ -131,4 +148,5 @@ include(SHARED_PATH.'/staff_header.php');?>
 
 <?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
 
+<?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>

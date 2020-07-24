@@ -1,5 +1,14 @@
+<script>
 
-  <?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
+	$(document).ready(function(){
+
+	  setTimeout(function() {
+	    $('#formErrMessage').fadeOut('slow');
+	  }, 2000); // <-- time in milliseconds
+
+	});
+
+</script>
 
 </body>
 

@@ -23,7 +23,6 @@ if(is_post_request()) {
   if(empty($errors)) {
 
     // $admin = Admin::find_by_username($username);
-
   	$login = "shan";
   	$password = "shan123";
 
@@ -53,5 +52,7 @@ if(is_post_request()) {
 	<body class="bg-gradient-primary">
 
 	<?php include('login-form.php'); ?>
+
+<?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
 
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>

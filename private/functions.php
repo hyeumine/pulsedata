@@ -7,6 +7,10 @@ function is_post_request() {
   return $_SERVER['REQUEST_METHOD'] == 'POST';
 }
 
+function is_get_request() {
+  return $_SERVER['REQUEST_METHOD'] == 'GET';
+}
+
 function url_for($script_path) {
   // add the leading '/' if not present
   if($script_path[0] != '/') {
@@ -80,13 +84,4 @@ function mdyyyy_time_format($date){
 
 function is_blank($value) {
 	return !isset($value) || trim($value) === '';
-}
-
-function require_login() {
-  global $session;
-  if(!$session->is_logged_in()) {
-    redirect_to('/login.php');
-  } else {
-    // Do nothing, let the rest of the page proceed
-  }
 }

@@ -36,10 +36,10 @@ class Person{
 
 		global $db;
 
-	    // $errors = validate_admin($person);
-	    // if (!empty($errors)) {
-	    //   return $errors;
-	    // }
+	    $errors = validate_qperson($person);
+	    if (!empty($errors)) {
+	      return $errors;
+	    }
 
 	    $sql = "INSERT INTO qperson ";
 	    $sql .= "(qcode, lgu_code, fname, mname, lname, mobile_number, address, details, start_date, created_at) ";
@@ -69,6 +69,11 @@ class Person{
 
 	public static function update_person($person) {
 	    global $db;
+
+	    $errors = validate_qperson($person);
+	     if (!empty($errors)) {
+	      return $errors;
+	    }
 
 	    $sql = "UPDATE qperson SET ";
 	    $sql .= "fname='" . db_escape($db, $person['fname']) . "', ";

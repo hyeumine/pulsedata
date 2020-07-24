@@ -23,7 +23,12 @@ if(is_post_request()) {
 
   $result = Person::update_person($person);
   if($result === true) {
-    $_SESSION['message'] = 'Admin updated.';
+     $session->message('
+      <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Well done!</h4>
+        <p>  The Pateints was updated successfully.</p>
+      </div>
+    ');
     redirect_to(url_for('/staff/patients/show.php?id=' . $id));
   } else {
     $errors = $result;
@@ -83,15 +88,17 @@ include(SHARED_PATH.'/staff_header.php');?>
                         <h1 class="h4 text-gray-900 mb-4"> Edit Patient Information</h1>
                       </div>
 
+                       <?php 
+                         if(isset($errors)){
+                            html(display_errors($errors));
+                         }
+                        ?>
+
                        <?php include('form_fields.php'); ?>
-
-
 
                       <button type="submit" class="btn btn-warning btn-user btn-block">
                           Update Record
                       </button>
-
-                      
 
                     </div>
                   </div>
@@ -126,6 +133,8 @@ include(SHARED_PATH.'/staff_header.php');?>
   </a>
 
   <!-- Logout Modal-->
-  <?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
+<?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
+
+<?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
 
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>

@@ -51,6 +51,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <th>Status</th>
                       <th>Oxygne </th>
                       <th>Date & Time</th>
+                      <th>Subscriber</th>
                       <th>Details</th>
                       <th>Admission</th>
                       <th>Action</th>
@@ -67,19 +68,28 @@ include(SHARED_PATH.'/staff_header.php');?>
                       <th>Status</th>
                       <th>Oxygne</th>
                       <th>Date & Time</th>
-                      <th>Details</th>
+                      <th>Subscriber</th>
+                      <th>Details</th>           
                       <th>Admission</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                      <?php foreach($persons as $person) {
+                      <?php 
 
-                        $qps = New QPersonSummary();
+                      $qps = New QPersonSummary();
+                      foreach($persons as $person) {
+
                         $status_summary = $qps->find_qperson_summary_id($person['id']);
-                        $status['status'] = $qps->condition($status_summary['status']);
-                        $oxreading_datetime = mdyyyy_time_format($status_summary['oxreading_datetime']);
-
+                        if($status_summary!==false){
+                          $status['status'] = $qps->condition($status_summary['status']);
+                          $oxreading_datetime = mdyyyy_time_format($status_summary['oxreading_datetime']);
+                        }else{
+                          $status['status'] = $qps->condition(0);
+                          $oxreading_datetime = 0;
+                          $status_summary['ox_reading']=0;
+                        }
+                        
                        ?>
 
                         <tr>
@@ -92,6 +102,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td class="text-center"><?php echo $status['status']; ?></td>
                           <td><?php echo h($status_summary['ox_reading']); ?></td>
                           <td><?php echo h($oxreading_datetime); ?></td>
+                          <td> <?php $qps->subscriber_flag($person['mobile_number']); ?> </td>
                           <td><?php echo h($person['details']); ?></td>
                           <td><?php echo h($person['start_date']); ?></td>
                           <td>
@@ -135,6 +146,8 @@ include(SHARED_PATH.'/staff_header.php');?>
   </a>
 
   <!-- Logout Modal-->
- <?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
+<?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
+
+<?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
 
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>

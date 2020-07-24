@@ -40,6 +40,7 @@ require_once('private/initialize.php');
     </div>
 
   </div>
+<?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
 
 <?php include(SHARED_PATH.'/public_footer.php'); ?>
 

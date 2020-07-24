@@ -116,6 +116,8 @@ include(SHARED_PATH.'/staff_header.php');?>
   </a>
 
   <!-- Logout Modal-->
- <?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
+<?php include(SHARED_PATH.'/staff_logout_modal.php');  ?>
+
+<?php include(SHARED_PATH."/staff_javascript_top_footer.php"); ?>
 
 <?php include(SHARED_PATH.'/staff_footer.php'); ?>
