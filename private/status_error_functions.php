@@ -3,7 +3,7 @@
 function require_login() {
   global $session;
   if(!$session->is_logged_in()) {
-    redirect_to('/login.php');
+    redirect_to('/public/staff/login.php');
   } else {
     // Do nothing, let the rest of the page proceed
   }
