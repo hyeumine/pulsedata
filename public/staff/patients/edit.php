@@ -89,10 +89,9 @@ include(SHARED_PATH.'/staff_header.php');?>
                       </div>
 
                        <?php 
-                         if(isset($errors)){
-                            html(display_errors($errors));
-                         }
-                        ?>
+            
+                          /// display_errors($errors); ?>
+       
 
                        <?php include('form_fields.php'); ?>
 
