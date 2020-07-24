@@ -224,7 +224,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                       </div>
                     </div>
 
-                    <a href="<?php echo url_for('staff/patients/index.php); ?>" class="btn btn-primary btn-icon-split">
+                    <a href="<?php echo url_for('staff/patients/index.php'); ?>" class="btn btn-primary btn-icon-split">
                       <span class="icon text-white-50">
                         <i class="fa fa-arrow-alt-circle-left"></i>
                       </span>
