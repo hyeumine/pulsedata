@@ -36,7 +36,7 @@ if(is_post_request()) {
     if($login == $username && $password=="shan123"  ) {
       // Mark admin as logged in
       $session->login($admin);
-      redirect_to( "/public/staff/patients/");
+      redirect_to( "/public/staff/patients/index.php");
     } else {
       // username not found or password does not match
       $errors[] = "Log in was unsuccessful.";
