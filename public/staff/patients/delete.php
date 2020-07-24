@@ -44,7 +44,7 @@ include(SHARED_PATH.'/staff_header.php');?>
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"> <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-icon-split">
+            <h1 class="h3 mb-0 text-gray-800"> <a href="<?php echo url_for('staff/patients/index.php'); ?>" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                               <i class="fa fa-arrow-alt-circle-left"></i>
                             </span>
