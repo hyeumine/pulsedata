@@ -26,8 +26,8 @@
         case SITE_NAME.'/forgot-password.php':
           is_page_header( current_page(), SITE_NAME.'/forgot-password.php', 'Toledo Pulse Data - Forgot Password');
           break; 
-        case SITE_NAME.'/public/staff/patients/index.php':
-          is_page_header( current_page(), SITE_NAME.'/public/staff/patients/index.php', 'Toledo Pulse Data - Dashboard');
+        case SITE_NAME.url_for("/staff/patients/index.php"):
+          is_page_header( current_page(), SITE_NAME.url_for("/staff/patients/index.php"), 'Toledo Pulse Data - All Patients');
           break;
       }
 
@@ -57,8 +57,8 @@
      is_page( current_page(), SITE_NAME."/forgot-password.php") ||
      is_page( current_page(), SITE_NAME."/staff/patients/new.php") ){
      html('<body class="bg-gradient-primary">');
-  }elseif( is_page(current_page(), SITE_NAME."/public/staff/patients/dashboard.php") ||
-    is_page( current_page(), SITE_NAME."/public/staff/patients/show.php?id=".isset($_GET['id']) )
+  }elseif( is_page(current_page(), SITE_NAME.url_for("/staff/patients/dashboard.php")) ||
+    is_page( current_page(), SITE_NAME.url_for("/staff/patients/show.php?id=".isset($_GET['id'])) )
    ){
     html('<body id="page-top">');
   }else{
