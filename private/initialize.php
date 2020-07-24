@@ -28,6 +28,6 @@ require_once(CLASS_PATH.'/admin.class.php');
 require_once(CLASS_PATH.'/session.class.php');
 
 $db = db_connect();
-
+$errors = [];
 $session = new Session;
 

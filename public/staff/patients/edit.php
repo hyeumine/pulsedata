@@ -62,7 +62,7 @@ include(SHARED_PATH.'/staff_header.php');?>
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"> 
-              <a href="<?php echo url_for('staff/patients/index.php'); ?>" class="btn btn-primary btn-icon-split">
+              <a href="<?php echo url_for('staff/patients/'); ?>" class="btn btn-primary btn-icon-split">
                             <span class="icon text-white-50">
                               <i class="fa fa-arrow-alt-circle-left"></i>
                             </span>
@@ -89,9 +89,10 @@ include(SHARED_PATH.'/staff_header.php');?>
                       </div>
 
                        <?php 
-            
-                          /// display_errors($errors); ?>
-       
+                    
+                            html(display_errors($errors));
+                         
+                        ?>
 
                        <?php include('form_fields.php'); ?>
 
