@@ -9,12 +9,9 @@ $id = isset( $_GET['id'] ) ? $_GET['id'] : "1";
 
 if(is_post_request()) {
 
-   if(is_blank($admin['message'])) {
-      $errors[] = "message cannot be blank.";
-    } elseif (!has_length($admin['first_name'], array('min' => 2, 'max' => 160))) {
-      $errors[] = "message must be between 5 and 160 characters.";
-    }
-
+  $msg=[];
+  $msg['message']=$_POST['message'];
+  $msg['id']=$id;
 
 } else {
   $person = Person::find_person_id($id);
