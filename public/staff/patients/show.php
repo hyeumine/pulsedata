@@ -148,10 +148,11 @@ include(SHARED_PATH.'/staff_header.php');?>
                               <div class="p-5"> 
 
                                   <div id="messaStat"></div>
+                                  <div id="messagErrF"></div>
 
-                                  <div class="form-group">  
+                                  <div class="form-group">   
                                     Message                                          
-                                    <textarea name="message" class="form-control form-control-user"value=""></textarea>
+                                    <textarea id="message" name="message" class="form-control form-control-user"value=""></textarea>
                                     <input type="hidden" name="qpatient" value="<?php echo $id; ?>" /> 
                                   </div>
                                  <button id="messageButtonSubmit" type="button" class="btn btn-primary btn-user btn-block">
@@ -272,7 +273,20 @@ include(SHARED_PATH.'/staff_header.php');?>
 
       event.preventDefault();
 
-      $.ajax({
+      if( $("#message").val() == '' ){
+
+          var html = "";
+          html +='<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+              html+='<strong> Please fill up field </strong>';
+             html +='<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+               html +='<span aria-hidden="true">&times;</span>';
+             html +='</button>';
+           html +='</div>';
+           $('#messagErrF').html(html);
+
+      } else {
+
+        $.ajax({
           type: 'POST',
           url: '../../../../smsrestcalls/sendsms.php',
           data: { 'message': $("message").val() },
@@ -289,10 +303,15 @@ include(SHARED_PATH.'/staff_header.php');?>
                  html +='</div>';
                  $('#messaStat').html(html);
               }
-
               $("form#messageSMS")[0].reset();
-          }              
-      });
+          }      
+
+        });
+
+      }
+
+
+
       
   });
 
