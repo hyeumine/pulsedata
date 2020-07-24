@@ -7,7 +7,19 @@ require_login();
 // $id = $_GET['id'] ?? '1'; // PHP > 7.0
 $id = isset( $_GET['id'] ) ? $_GET['id'] : "1";
 
-$person = Person::find_person_id($id);
+if(is_post_request()) {
+
+   if(is_blank($admin['message'])) {
+      $errors[] = "message cannot be blank.";
+    } elseif (!has_length($admin['first_name'], array('min' => 2, 'max' => 160))) {
+      $errors[] = "message must be between 5 and 160 characters.";
+    }
+
+
+} else {
+  $person = Person::find_person_id($id);
+}
+
 
 include(SHARED_PATH.'/staff_header.php');?>
 
@@ -138,7 +150,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                    </p>  
 
                     <!-- Form -->
-                    <form id="messageSMS" action="" method="post">
+                    <form id="messageSMS" action="../../../../smsrestcalls/sendsms.php" method="post">
                       <div class="card o-hidden border-0 shadow-lg my-5">
                         <div class="card-body p-0">
                           <!-- Nested Row within Card Body -->
@@ -147,12 +159,12 @@ include(SHARED_PATH.'/staff_header.php');?>
 
                               <div class="p-5"> 
 
-                                  <div id="messaStat"></div>
-                                  <div id="messagErrF"></div>
+                                 <div id="messaStat"></div>
+                                  <div id="messagErrF"></div> 
 
                                   <div class="form-group">   
                                     Message                                          
-                                    <textarea id="message" name="message" class="form-control form-control-user"value=""></textarea>
+                                    <textarea id="message" name="message" class="form-control form-control-user" maxlength="160" value="" rows="5" ></textarea>
                                     <input type="hidden" name="qpatient" value="<?php echo $id; ?>" /> 
                                   </div>
                                  <button id="messageButtonSubmit" type="button" class="btn btn-primary btn-user btn-block">
@@ -282,37 +294,24 @@ include(SHARED_PATH.'/staff_header.php');?>
                html +='<span aria-hidden="true">&times;</span>';
              html +='</button>';
            html +='</div>';
+           $('#messaStat').html(html);
+
+      } else if( $("#message").val().length == 160 ){
+
+         var html = "";
+          html +='<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+              html+='<strong> Text exceeded </strong>';
+             html +='<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
+               html +='<span aria-hidden="true">&times;</span>';
+             html +='</button>';
+           html +='</div>';
            $('#messagErrF').html(html);
 
-      } else {
-
-        $.ajax({
-          type: 'POST',
-          url: '../../../../smsrestcalls/sendsms.php',
-          data: { 'message': $("message").val() },
-          success: function(response) {
-
-            console.log( response );
-              if(response){                  
-                var html = "";
-                html +='<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                    html+='<strong> Message sent </strong>';
-                   html +='<button type="button" class="close" data-dismiss="alert" aria-label="Close">';
-                     html +='<span aria-hidden="true">&times;</span>';
-                   html +='</button>';
-                 html +='</div>';
-                 $('#messaStat').html(html);
-              }
-              $("form#messageSMS")[0].reset();
-          }      
-
-        });
-
+      }else{
+         console.log("send here");
+         $("form#messageSMS").submit();
       }
 
-
-
-      
   });
 
 </script>
