@@ -8,7 +8,7 @@
 				echo  2;
 			}
 			else{
-				mysqli_query($p, "INSERT INTO qperson_summary VALUES(NULL, "'. $r['id'] .'", ".$_REQUEST['type'].",'". $_REQUEST['value'] ."',NULL,1)");
+				//mysqli_query($p, "INSERT INTO qperson_summary VALUES(NULL, "'. $r['id'] .'", ".$_REQUEST['type'].",'". $_REQUEST['value'] ."',NULL,1)");
 				echo 0;
 			}
 			break;
