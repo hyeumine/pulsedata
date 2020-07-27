@@ -3,8 +3,13 @@
 	$res = mysqli_query($p, "SELECT * FROM subscriber as s JOIN qperson as p ON s.subscriber_number=p.mobile_number WHERE s.subscriber_number='". $_REQUEST['mobile_number'] ."'");
 	$b = 0;
 	while($r = mysqli_fetch_assoc($res)){
-			echo $r['subscriber_number'];
 			$b=1;
+			if($_REQUEST['qcode'] != $r['qcode']){
+				echo  2;
+			}
+			else{
+				echo 0;
+			}
 			break;
 	}
 	if($b==0)
