@@ -8,12 +8,33 @@ class QPersonSummary{
 	    3 => 'Severe'
 	];
 
-	public static function find_qperson_summary_id($id) {
+	/*
+	* Display table for index
+	*
+	*/
+	public static function findPSmmryReadingByID($id) {
 
 	    global $db;
 
 	    $sql = "SELECT * FROM qperson_summary ";
 	    $sql .= "WHERE qperson_id='" . db_escape($db, $id) . "' ";
+	    $sql .= "ORDER BY reading_datetime DESC ";
+		$result = mysqli_query($db, $sql);
+	    confirm_result_set($result);
+	    return $result; // returns an assoc. array
+	}
+
+	/*
+	* 3 column display for All Patients 
+	*
+	*/
+	public static function find_qperson_status_by_id($id) {
+
+	    global $db;
+
+	    $sql = "SELECT * FROM qperson_summary ";
+	    $sql .= "WHERE qperson_id='" . db_escape($db, $id) . "' ";
+	    $sql .= "ORDER BY reading_datetime DESC ";
 	    $sql .= "LIMIT 1";
 	    $result = mysqli_query($db, $sql);
 	    confirm_result_set($result);
@@ -24,7 +45,6 @@ class QPersonSummary{
 	    }else{
 	    	return false;
 	    }
-
 	}
 
 	public static function subscriber($mobile_number){
@@ -33,7 +53,6 @@ class QPersonSummary{
 
 		$sql = "SELECT * FROM subscriber ";
 	    $sql .= "WHERE subscriber_number='" . db_escape($db, $mobile_number) . "' ";
-
 	    $result = mysqli_query($db, $sql);
 	    $subscriber_count = mysqli_num_rows($result);
 	    mysqli_free_result($result);

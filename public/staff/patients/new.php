@@ -14,9 +14,10 @@ $details = '';
 
 if(is_post_request()) {
 
+  // get the lat id of the table
   $person = [];
-  $person['qcode'] = '';
-  $person['lgu_code'] = '';    
+  $person['qcode'] = Person::count_rows_qperson();
+  $person['lgu_code'] = $lgu['lgu_code'];    
   $person['fname'] = $_POST['fname'] ?? '';
   $person['mname'] = $_POST['mname'] ?? '';
   $person['lname'] = $_POST['lname'] ?? '';

@@ -15,6 +15,8 @@ if(is_post_request()) {
 
 } else {
   $person = Person::find_person_id($id);
+  $qps = QPersonSummary::findPSmmryReadingByID($person['id']);
+
 }
 
 
@@ -184,49 +186,28 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <table class="table-sm table table-bordered table-hover patients-table table-striped" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                               <tr>
-                                <th class="small" >Date</th>
-                                <th class="small" >Time</th>
-                                <th class="small" >Oxi Reading</th>
+                                <th class="small">Date</th>
+                                <th class="small">Time</th>
+                                <th class="small">Vital Reading</th>
                               </tr>
                             </thead>
                             <tfoot>
                               <tr>
-                                <th class="small" >Date</th>
-                                <th class="small" >Time</th>
-                                <th class="small" >Oxi Reading</th>
+                                <th class="small">Date </th>
+                                <th class="small">Time</th>
+                                <th class="small">Vital Reading</th>
                               </tr>
                             </tfoot>
-                            <tbody>              
-                              <tr>
-                                <th class="small">06/18/2020</th>
-                                <td class="small">18:04</td>
-                                <td class="small"> 90% </td>
-                              </tr>
-                              <tr>
-                                <th class="small">06/17/2020</th>
-                                <td class="small">17:04</td>
-                                <td class="small">80%</td>
-                              </tr>
-                              <tr>
-                                <th class="small">06/16/2020</th>
-                                <td class="small">16:04</td>
-                                <td class="small">80%</td>
-                              </tr>
-                               <tr>
-                               <th class="small">06/14/2020</th>
-                                <td class="small">15:04</td>
-                                <td class="small">80%</td>
-                              </tr>
-                               <tr>
-                                <th class="small">06/14/2020</th>
-                                <td class="small">14:04</td>
-                                <td class="small">80%</td>
-                              </tr>
-                               <tr>
-                                <th class="small">06/13/2020</th>
-                                <td class="small">12:04</td>
-                                <td class="small">75%</td>
-                              </tr>
+                            <tbody>
+                              <?php foreach( $qps as $value){ 
+                                $reading = $vitalreading->findTypeByID( $value['type'] );
+                                ?>
+                                <tr>
+                                  <th class="small"> <?php html( mdyyyy_time_format( $value['reading_datetime'] ) ); ?> </th>
+                                  <th class="small"> <?php html( hour_time_format( $value['reading_datetime'] ) ); ?> </th>                          
+                                  <th class="small"> <?php html( $value['reading_value']."-".$reading['name']) ?> </th>
+                                </tr> 
+                              <?php } ?>
                             </tbody>
                           </table>
                         </div>

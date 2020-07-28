@@ -13,11 +13,12 @@ class Person{
 	    global $db;
 
 	    $sql = "SELECT * FROM qperson ";
-	    $sql .= "ORDER BY fname ASC";
+	    $sql .= "ORDER BY start_date DESC ";
 	    $result = mysqli_query($db, $sql);
 	    confirm_result_set($result);
 	    return $result;
 	}
+
 
 	public static function find_person_id($id) {
 	    global $db;
@@ -27,9 +28,29 @@ class Person{
 	    $sql .= "LIMIT 1";
 	    $result = mysqli_query($db, $sql);
 	    confirm_result_set($result);
-	    $admin = mysqli_fetch_assoc($result); // find first
+	    $qperson = mysqli_fetch_assoc($result); // find first
 	    mysqli_free_result($result);
-	    return $admin; // returns an assoc. array
+	    return $qperson; // returns an assoc. array
+	}
+
+	public static function find_all_lgu_qperson($lgu_code){
+
+	    global $db;
+
+	    $sql = "SELECT * FROM qperson ";
+	  	$sql .= "WHERE lgu_code='" . db_escape($db, $lgu_code) . "' ";
+	    $sql .= "ORDER BY fname ASC";
+	    $result = mysqli_query($db, $sql);
+	    confirm_result_set($result);
+	    return $result; // returns an assoc. array
+	}
+
+	public static function findQpersonwithSummary(){
+
+		global $db;
+
+		
+
 	}
 
 	public static function insert_person($person){
@@ -111,8 +132,30 @@ class Person{
 		}
 	}
 
+	public static function count_rows_qperson(){
 
-	 public static function delete_person($id) {
+		global $db;
+
+		$sql = "SELECT MAX(id) FROM qperson ";
+	    $result = mysqli_query($db, $sql);
+	    confirm_result_set($result);
+	    $num_rows = mysqli_fetch_row($result);
+		$total_rows = $num_rows[0]+1;
+	    
+	    return self::generate_qcode($total_rows);
+
+	}
+
+	public static function generate_qcode($total_rows){
+
+		$data=[];
+
+		$data['generate'] = $generate = "OS-0".$total_rows;
+
+		return $data['generate'];
+	}
+
+	public static function delete_person($id) {
 	    global $db;
 
 	    $sql = "DELETE FROM qperson ";

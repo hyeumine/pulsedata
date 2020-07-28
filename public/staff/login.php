@@ -3,44 +3,48 @@
 require_once('../../private/initialize.php');
 
 $errors = [];
-$username = '';
+$lgu_login = '';
 $password = '';
+
+
 
 if(is_post_request()) {
 
-  $username = $_POST['username'] ?? '';
+  $lgu_login = $_POST['lgu_login'] ?? '';
   $password = $_POST['password'] ?? '';
 
   // Validations
-  if(is_blank($username)) {
-    $errors[] = "Username cannot be blank.";
+  if(is_blank($lgu_login)) {
+    $errors[] = "Lgu field cannot be blank.";
   }
   if(is_blank($password)) {
     $errors[] = "Password cannot be blank.";
   }
 
   // if there were no errors, try to login
-  if(empty($errors)) {
+  if(empty($errors)) {  
 
-    // $admin = Admin::find_by_username($username);
-  	$login = "shan";
-  	$password = "shan123";
+    // Using one variable ensures that msg is the same
+    $login_failure_msg = "Log in was unsuccessful.";
 
-  	$admin=[
-  		"id" => 1,
-  		"username" => $login,
-  		"password" => $password
-  	];
+    $lgu = Lgu::find_by_lgu_code($lgu_login);
 
-    // test if admin found and password is correct
-    if($login == $username && $password=="shan123"  ) {
-      // Mark admin as logged in
-      $session->login($admin);
-      redirect_to( url_for("/staff/patients/index.php"));
+    if($lgu) {
+
+      if(password_verify($password, $lgu['passkey'])) {
+        // password matches
+        Session::login($lgu);
+        redirect_to( url_for("/staff/patients/index.php"));
+      } else {
+        // username found, but password does not match
+        $errors[] = $login_failure_msg;
+      }
+
     } else {
-      // username not found or password does not match
-      $errors[] = "Log in was unsuccessful.";
+      // no username found
+      $errors[] = $login_failure_msg;
     }
+
 
   }
 

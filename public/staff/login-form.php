@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-lg-6 d-none d-lg-block">
                 
-                  <img class="img-thumbnail" src="<?php html(url_for('/assets/img/patients.jpg')); ?>" />
+              <img class="img-thumbnail" src="<?php html(url_for('/assets/img/patients.jpg')); ?>" />
 
             </div>
             <div class="col-lg-6">
@@ -24,7 +24,7 @@
 
                 <form action="login.php" method="post" class="user">
                   <div class="form-group">
-                    <input type="text" name="username" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter User Login...">
+                    <input type="text" name="lgu_login" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter lgu code...">
                   </div>
                   <div class="form-group">
                     <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">

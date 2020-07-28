@@ -24,10 +24,14 @@ require_once(PRIVATE_PATH.'/status_error_functions.php');
 require_once(PRIVATE_PATH.'/database.php');
 require_once(CLASS_PATH.'/person.class.php');
 require_once(CLASS_PATH.'/qpersonsummary.class.php');
-require_once(CLASS_PATH.'/admin.class.php');
+require_once(CLASS_PATH.'/lgu.class.php');
+require_once(CLASS_PATH.'/vitalreading.class.php');
 require_once(CLASS_PATH.'/session.class.php');
 
 $db = db_connect();
+
 $errors = [];
 $session = new Session;
+$user_id = $session->user_login();
+$lgu = Lgu::find_user_id($user_id);
 

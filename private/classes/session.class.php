@@ -3,30 +3,36 @@
 class Session {
 
 private $admin_id;
-  public $username;
-  private $last_login;
+public $username;
+private $last_login;
 
   public const MAX_LOGIN_AGE = 60*60*24; // 1 day
 
   public function __construct() {
     session_start();
-    $this->check_stored_login();
   }
 
   public function login($admin){
-    if($admin){
-      // prevent session fixation attacks
-      session_regenerate_id();
-      $this->admin_id = $_SESSION['admin_id'] = $admin['id'];
-      $this->username = $_SESSION['username'] = $admin['username'];
-      $this->last_login = $_SESSION['last_login'] = time();
-    }
+    
+    session_regenerate_id();
+    $_SESSION['admin_id'] = $admin['id'];
+    $_SESSION['last_login'] = time();
+    $_SESSION['username'] = $admin['username'];
     return true;
   }
 
-  public function is_logged_in() {
-    // return isset($this->admin_id);
-    return isset($this->admin_id) && $this->last_login_is_recent();
+
+  public static function is_logged_in(){
+    // Having a admin_id in the session serves a dual-purpose:
+    // - Its presence indicates the admin is logged in.
+    // - Its value tells which admin for looking up their record.
+    return isset($_SESSION['admin_id']);
+  }
+
+  public static function user_login(){
+
+    $login = self::is_logged_in();
+    return $login;
   }
 
   public function logout() {
@@ -39,23 +45,6 @@ private $admin_id;
     return true;
   }
 
-  private function check_stored_login() {
-    if(isset($_SESSION['admin_id'])) {
-      $this->admin_id = $_SESSION['admin_id'];
-      $this->username = $_SESSION['username'];
-      $this->last_login = $_SESSION['last_login'];
-    }
-  }
-
-  private function last_login_is_recent() {
-    if(!isset($this->last_login)) {
-      return false;
-    } elseif(($this->last_login + self::MAX_LOGIN_AGE) < time()) {
-      return false;
-    } else {
-      return true;
-    }
-  }
 
   public function message($msg="") {
     if(!empty($msg)) {
@@ -68,10 +57,9 @@ private $admin_id;
     }
   }
 
-  public function clear_message() {
+  public static function clear_message() {
     unset($_SESSION['message']);
   }
-
 
 }
 

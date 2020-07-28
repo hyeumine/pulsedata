@@ -49,6 +49,7 @@ function is_page($current_page, $index){
 		return true;
 	}	
 	
+	return null;
 }
 
 function redirect_to($location) {
@@ -74,12 +75,22 @@ function html($paramenter){
 	echo $paramenter;
 }
 
-
-function mdyyyy_time_format($date){
+function mdyyyy_format($date){
 	$strtotime = strtotime($date);
 	$date_str = date('Y-m-d', $strtotime);
 	$date = DateTime::createFromFormat('Y-m-d', $date_str);
-	return $date->format('m-d-Y H:i:s');
+	return $date->format('m-d-Y');
+}
+
+function mdyyyy_time_format($date){
+	$phpdate = strtotime( $date );
+	return $mysqldate = date( 'Y-m-d H:i:s', $phpdate );
+}
+
+
+function hour_time_format($date){
+	$phpdate = strtotime( $date );
+	return $mysqldate = date( 'H:i:s', $phpdate );
 }
 
 function is_blank($value) {
