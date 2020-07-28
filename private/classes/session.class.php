@@ -2,22 +2,13 @@
 
 class Session {
 
-private $admin_id;
-public $username;
-private $last_login;
-
-  public const MAX_LOGIN_AGE = 60*60*24; // 1 day
-
-  public function __construct() {
-    session_start();
-  }
-
-  public function login($admin){
+  public static function login($admin){
     
     session_regenerate_id();
     $_SESSION['admin_id'] = $admin['id'];
+    $_SESSION['lgu_code'] = $admin['lgu_code'];
+    $_SESSION['contact_person'] = $admin['contact_person'];
     $_SESSION['last_login'] = time();
-    $_SESSION['username'] = $admin['username'];
     return true;
   }
 
@@ -29,24 +20,14 @@ private $last_login;
     return isset($_SESSION['admin_id']);
   }
 
-  public static function user_login(){
-
-    $login = self::is_logged_in();
-    return $login;
-  }
-
-  public function logout() {
+  public static function logout() {
     unset($_SESSION['admin_id']);
-    unset($_SESSION['username']);
-    unset($_SESSION['last_login']);
-    unset($this->admin_id);
-    unset($this->username);
-    unset($this->last_login);
+    unset($_SESSION['lgu_code']);
+    unset($_SESSION['contact_person']);
     return true;
   }
 
-
-  public function message($msg="") {
+  public static function message($msg="") {
     if(!empty($msg)) {
       // Then this is a "set" message
       $_SESSION['message'] = $msg;

@@ -1,4 +1,5 @@
 <?php 
+ob_start(); // output buffering is turned on
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -7,6 +8,8 @@ error_reporting(E_ALL);
 define("SITE_NAME", $_SERVER['SERVER_NAME'] );
 
 date_default_timezone_set('Asia/Manila');
+
+session_start(); // turn on sessions
 
 // dirname() returns the path to the parent directory
 define("PRIVATE_PATH", dirname(__FILE__));
@@ -32,6 +35,10 @@ $db = db_connect();
 
 $errors = [];
 $session = new Session;
-$user_id = $session->user_login();
-$lgu = Lgu::find_user_id($user_id);
 
+// $user_id = $session->is_logged_in();
+// $lgu = Lgu::find_user_id($user_id);
+// var_dump($lgu);
+
+$lgu['lgu_code'] = $_SESSION['lgu_code'] ?? '';
+$lgu['contact_person'] = $_SESSION['contact_person'] ?? '';

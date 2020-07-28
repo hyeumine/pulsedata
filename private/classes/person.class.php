@@ -49,7 +49,7 @@ class Person{
 
 		global $db;
 
-		
+
 
 	}
 
