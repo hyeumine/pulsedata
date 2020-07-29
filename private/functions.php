@@ -82,6 +82,17 @@ function mdyyyy_format($date){
 	return $date->format('m-d-Y');
 }
 
+function check_date($date){
+
+	if($date===null){
+		$html = "";
+		$html .= '<span class="badge badge-danger">Unknow</span>';
+
+		return $html;
+	}
+
+}
+
 function mdyyyy_time_format($date){
 	$phpdate = strtotime( $date );
 	return $mysqldate = date( 'Y-m-d H:i:s', $phpdate );
@@ -89,6 +100,7 @@ function mdyyyy_time_format($date){
 
 
 function hour_time_format($date){
+	
 	$phpdate = strtotime( $date );
 	return $mysqldate = date( 'H:i:s', $phpdate );
 }
@@ -100,4 +112,13 @@ function is_blank($value) {
 function error_404() {
   header($_SERVER["SERVER_PROTOCOL"] . " 404 Not Found");
   exit();
+}
+
+
+function no_data_found(){
+
+	$html = "";
+	$html .= '<span class="badge badge-danger">Unknow</span>';
+
+	return $html;
 }

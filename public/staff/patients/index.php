@@ -84,20 +84,13 @@ include(SHARED_PATH.'/staff_header.php');?>
                           if( $person['id'] ){
 
                             $qps_summry = $qps->find_qperson_status_by_id( $person['id'] );
-                            $reading_value = $qps_summry['reading_value'] ?? '';                         
-                            $reading = $vitalreading->findTypeByID( $qps_summry['type'] );
-                            $qtype_name = $reading['name']?? '';
-
+                            $reading_value = $qps_summry['reading_value'] ?? '0';                         
+                            $reading['name'] = $vitalreading->findTypeByID( $qps_summry['type'] );                  
+                            $status['status'] = $qps->condition($qps_summry['status']);
                             if($qps_summry!==false){
-                              echo "false";
-                              $status['status'] = $qps->condition($qps_summry['status']);
-                              $reading_datetime = mdyyyy_time_format($qps_summry['reading_datetime']);
-                            }else{
-                              $status['status'] = $qps->condition(0);
-                              $reading_datetime = 0;
-                              $qps_summry['reading_value']=0;
+                              $reading_datetime = mdyyyy_time_format(  $qps_summry['reading_datetime']);
                             }
-
+                            
                         }
                        ?>
 
@@ -107,9 +100,9 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td><?php echo h($person['mname']); ?></td>
                           <td><?php echo h($person['lname']); ?></td>
                           <td><?php echo h($person['mobile_number']); ?></td>
-                          <td class="text-center"><?php echo $status['status']; ?></td>
-                          <td><?php echo h( $reading_value."-".$qtype_name); ?></td>
-                          <td><?php echo h($reading_datetime); ?></td>
+                          <td class="text-center"><?php html($status['status']); ?></td>
+                          <td><?php echo h($reading_value)."-".$reading['name']; ?></td>
+                          <td><?php echo check_date($reading_datetime ?? null); ?></td>
                           <td class="text-center" > <?php $qps->subscriber_flag($person['mobile_number']); ?> </td>
                           <td><?php echo h($person['details']); ?></td>
                           <td><?php echo h($person['start_date']); ?></td>
