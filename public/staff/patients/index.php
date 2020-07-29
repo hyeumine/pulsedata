@@ -85,12 +85,12 @@ include(SHARED_PATH.'/staff_header.php');?>
 
                             $qps_summry = $qps->find_qperson_status_by_id( $person['id'] );
                             $reading_value = $qps_summry['reading_value'] ?? '0';                         
-                            $reading['name'] = $vitalreading->findTypeByID( $qps_summry['type'] );                  
-                            $status['status'] = $qps->condition($qps_summry['status']);
+                            $reading['name'] = $vitalreading->findTypeByID( $qps_summry['type']?? '');                  
+                            $status['status'] = $qps->condition($qps_summry['status']?? '');
                             if($qps_summry!==false){
                               $reading_datetime = mdyyyy_time_format(  $qps_summry['reading_datetime']);
                             }
-                            
+
                         }
                        ?>
 
