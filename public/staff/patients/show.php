@@ -71,7 +71,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                          Patient Information</h1>
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                       <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                           <div class="row">
