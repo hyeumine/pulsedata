@@ -74,13 +74,14 @@ class QPersonSummary{
 
 	public static function condition($condition_id) {
 
-	
 		$html = "";
 
 		foreach(self::CONDITION_OPTIONS as $key => $value){
 
 			if($key == $condition_id){
-					
+				
+				var_dump($key);
+
 				if( $key == 1 ){
 
 					$html = "<span class='badge badge-pill badge-info'>".$value."</span>";
@@ -94,9 +95,6 @@ class QPersonSummary{
 					$html = "<span class='badge badge-pill badge-danger'>".$value."</span>";
 				}
 
-			}else{
-
-				$html = "<span class='badge badge-pill badge-danger'>unknow</span>";
 			}
 		}
 
