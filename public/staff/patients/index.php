@@ -86,6 +86,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                             $reading = $vitalreading->findTypeByID( $qps_summry['type']?? '');                          
                             $reading_name = $reading['name']?? no_data_found();
                             $status['status'] = $qps->condition($qps_summry['status']);
+                            var_dump($status['status']);
                             if($qps_summry!==false){
                               $reading_datetime = mdyyyy_time_format( $qps_summry['reading_datetime']);
                             }else{
