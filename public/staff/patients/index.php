@@ -80,18 +80,25 @@ include(SHARED_PATH.'/staff_header.php');?>
 
                       $qps = New QPersonSummary();
                       foreach($persons as $person) {
+
                           if( $person['id'] ){
+
                             $qps_summry = $qps->find_qperson_status_by_id( $person['id'] );
-                            $reading_value = $qps_summry['reading_value'] ?? '0';                         
-                            $reading = $vitalreading->findTypeByID( $qps_summry['type']?? '');                          
-                            $reading_name = $reading['name']?? no_data_found();
-                            var_dump($qps_summry['status']);
-                            $status['status'] = $qps->condition($qps_summry['status']);
-                            if($qps_summry!==false){
-                              $reading_datetime = mdyyyy_time_format( $qps_summry['reading_datetime']);
-                            }else{
+
+                            if(!$qps_summry){
+                              $default = $qps_summry['reading_value']=0;
+                              $reading_value = $default;
+                              $reading_name = no_data_found();
+                              $status['status'] = no_data_found();
                               $reading_datetime = no_data_found();
+                            }else{
+                              $reading_value = $qps_summry['reading_value'];
+                              $reading = $vitalreading->findTypeByID( $qps_summry['type'] ); 
+                              $reading_name = $reading['name'];
+                              $status['status'] = $qps->condition($qps_summry['status']);
+                              $reading_datetime = mdyyyy_time_format( $qps_summry['reading_datetime']);
                             }
+
                         }
                        ?>
 
