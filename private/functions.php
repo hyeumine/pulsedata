@@ -114,6 +114,29 @@ function error_404() {
   exit();
 }
 
+function readmore_details($string, $id){
+
+	// strip tags to avoid breaking any html
+	$string = strip_tags($string);
+	if (strlen($string) > 50 ) {
+
+	    // truncate string
+	    $stringCut = substr($string, 0, 50);
+	    $endPoint = strrpos($stringCut, ' ');
+
+	    //if the string doesn't contain any space then it will cut without word basis.
+	    $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+
+	    $url = url_for('/staff/patients/show.php?id='.h(u($id)));
+
+	    $string .= "<a class='action text-info' href='".$url ."'>...read more</a>";
+	}
+	html($string);
+
+}
+
+
+
 
 function no_data_found(){
 

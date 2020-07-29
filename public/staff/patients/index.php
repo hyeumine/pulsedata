@@ -104,7 +104,7 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td><?php echo h($reading_value)."-".$reading['name']; ?></td>
                           <td><?php echo check_date($reading_datetime ?? null); ?></td>
                           <td class="text-center" > <?php $qps->subscriber_flag($person['mobile_number']); ?> </td>
-                          <td><?php echo h($person['details']); ?></td>
+                          <td><?php readmore_details( $person['details'], $person['id'] ); ?></td>
                           <td><?php echo h($person['start_date']); ?></td>
                           <td>
                             <a class="action text-info" href="<?php echo url_for('/staff/patients/show.php?id=' . h(u($person['id']))); ?>">  <i class="fa fa-eye"></i> <!-- View --></a>
