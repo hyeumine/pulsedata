@@ -80,17 +80,17 @@ include(SHARED_PATH.'/staff_header.php');?>
 
                       $qps = New QPersonSummary();
                       foreach($persons as $person) {
-
                           if( $person['id'] ){
-
                             $qps_summry = $qps->find_qperson_status_by_id( $person['id'] );
                             $reading_value = $qps_summry['reading_value'] ?? '0';                         
-                            $reading['name'] = $vitalreading->findTypeByID( $qps_summry['type']?? '');                  
-                            $status['status'] = $qps->condition($qps_summry['status']?? '');
+                            $reading = $vitalreading->findTypeByID( $qps_summry['type']?? '');                          
+                            $reading_name = $reading['name']?? no_data_found();
+                            $status['status'] = $qps->condition($qps_summry['status']);
                             if($qps_summry!==false){
-                              $reading_datetime = mdyyyy_time_format(  $qps_summry['reading_datetime']);
+                              $reading_datetime = mdyyyy_time_format( $qps_summry['reading_datetime']);
+                            }else{
+                              $reading_datetime = no_data_found();
                             }
-
                         }
                        ?>
 
@@ -101,8 +101,8 @@ include(SHARED_PATH.'/staff_header.php');?>
                           <td><?php echo h($person['lname']); ?></td>
                           <td><?php echo h($person['mobile_number']); ?></td>
                           <td class="text-center"><?php html($status['status']); ?></td>
-                          <td><?php echo h($reading_value)."-".$reading['name']; ?></td>
-                          <td><?php echo check_date($reading_datetime ?? null); ?></td>
+                          <td><?php echo h($reading_value)."-".$reading_name; ?></td>
+                          <td><?php echo $reading_datetime??''; ?></td>
                           <td class="text-center" > <?php $qps->subscriber_flag($person['mobile_number']); ?> </td>
                           <td><?php readmore_details( $person['details'], $person['id'] ); ?></td>
                           <td><?php echo h($person['start_date']); ?></td>

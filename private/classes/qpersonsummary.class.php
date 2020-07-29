@@ -73,33 +73,31 @@ class QPersonSummary{
 	}
 
 	public static function condition($condition_id) {
-			
+
+	
+		$html = "";
+
 		foreach(self::CONDITION_OPTIONS as $key => $value){
 
 			if($key == $condition_id){
-				
-				if( $condition_id == 1 ){
+					
+				if( $key == 1 ){
 
 					$html = "<span class='badge badge-pill badge-info'>".$value."</span>";
 
-				}elseif( $condition_id == 2 ){
+				}elseif( $key == 2 ){
 
 					$html = "<span class='badge badge-pill badge-warning'>".$value."</span>";
 
-
-				}elseif( $condition_id == 3 ){
+				}elseif( $key == 3 ){
 
 					$html = "<span class='badge badge-pill badge-danger'>".$value."</span>";
-
 				}
 
-				
 			}else{
 
 				$html = "<span class='badge badge-pill badge-danger'>unknow</span>";
-			}			
-
-
+			}
 		}
 
 		return $html;
