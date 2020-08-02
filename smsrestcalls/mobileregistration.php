@@ -3,8 +3,11 @@
 
 	 $res = mysqli_query($p, "SELECT MAX(id) as c FROM qperson WHERE lgu_code='MOB-001");
 
+	 $c = 0;
 	 while($r = mysqli_fetch_assoc($res)){
-	 	echo $r['c'];
+	 	break;
 	 }
+
+	 echo $c;
 
 ?>
