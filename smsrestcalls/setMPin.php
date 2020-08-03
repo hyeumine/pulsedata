@@ -7,6 +7,7 @@
 	    $b = 0;
 		while($r = mysqli_fetch_assoc($res)){
 			$b=1;
+			mysqli_query($p, "INSERT INTO qcode_mpin VALUES(NULL,'".$_REQUEST['qcode']."','".$_REQUEST['mpin']."'");
 			echo 0;
 			break;
 		}
