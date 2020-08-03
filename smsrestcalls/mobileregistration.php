@@ -10,6 +10,6 @@
 	 }
 
 	 $res = mysqli_query($p, "INSERT INTO qperson VALUES(NULL,'MOB-". str_pad($c+1, 5, '0', STR_PAD_LEFT) ."','MOB-001','".$_REQUEST['fname']."','".$_REQUEST['mname']."','".$_REQUEST['lname']."','".$_REQUEST['mobile_number']."','".$_REQUEST['address']."','','',NULL)");
-	 echo "MOB-". str_pad($c, 5, '0', STR_PAD_LEFT);
+	 echo "MOB-". str_pad($c+1, 5, '0', STR_PAD_LEFT);
 
 ?>
